@@ -24,5 +24,12 @@ export class Board {
     this.grid[this.pos.x][this.pos.y] = block;
   }
 
+  hasFalling() {
+    if (this.pos.y === this.height) {
+      return false;  
+    }
+    return true;
+  }
+
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
 }
