@@ -17,19 +17,21 @@ export class Board {
     if (!this.hasFalling()) return;
     const currentX = this.pos.x
     const nextX = ++this.pos.x;
+
     if (nextX >= this.height) return;
     this.grid[currentX][this.pos.y] = ".";
     this.grid[nextX][this.pos.y] = this.block;
   }
 
-  drop(block) {
-    if (this.block && this.block !== block) throw new Error("already falling");
-    this.block = block;
-    this.grid[this.pos.x][this.pos.y] = block;
+  hasFalling() {
+    return this.pos.x !== this.height;
   }
 
-  hasFalling() {
-    return this.falling = this.pos.x !== this.height;
+  drop(block) {
+    const hasBlock = this.grid.slice(0,-1).some(row => row.includes(this.block));
+    if (hasBlock) throw new Error("already falling");
+    this.block = block;
+    this.grid[this.pos.x = 0][this.pos.y] = block;
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
