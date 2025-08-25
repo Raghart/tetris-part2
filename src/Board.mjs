@@ -4,7 +4,6 @@ export class Board {
   grid; 
   pos;
   block;
-  falling;
 
   constructor(width, height) {
     this.width = width;
@@ -12,14 +11,15 @@ export class Board {
     this.grid = Array.from({ length: width }, () => Array.from({ length: height }, () => "."));
     this.pos = { x: 0, y: Math.floor(this.width / 2) };
     this.block = "";
-    this.falling = true; 
   }
 
   tick() {
-    if (this.falling) {
-      this.grid = this.grid.map(arr => arr.map(() => "."));
-      this.grid[++this.pos.x][this.pos.y] = this.block;
-    }
+    if (!this.hasFalling()) return;
+    const currentX = this.pos.x
+    const nextX = ++this.pos.x;
+    if (nextX >= this.height) return;
+    this.grid[currentX][this.pos.y] = ".";
+    this.grid[nextX][this.pos.y] = this.block;
   }
 
   drop(block) {
@@ -29,9 +29,7 @@ export class Board {
   }
 
   hasFalling() {
-    if (this.pos.y === this.height) { 
-      this.block = ""; return this.falling = false;
-    }; return this.falling = true;
+    return this.falling = this.pos.x !== this.height;
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
