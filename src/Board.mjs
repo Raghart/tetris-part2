@@ -4,6 +4,7 @@ export class Board {
   grid; 
   pos;
   block;
+  isFalling;
 
   constructor(width, height) {
     this.width = width;
@@ -11,6 +12,7 @@ export class Board {
     this.grid = Array.from({ length: width }, () => Array.from({ length: height }, () => "."));
     this.pos = { x: 0, y: Math.floor(this.width / 2) };
     this.block = "";
+    this.isFalling = false;
   }
 
   tick() {
@@ -18,19 +20,22 @@ export class Board {
     const currentX = this.pos.x
     const nextX = ++this.pos.x;
 
-    if (nextX >= this.height) return;
+    if (nextX >= this.height || this.grid[nextX][this.pos.y] === "X") {
+      this.isFalling = false;
+      return;
+    };
     this.grid[currentX][this.pos.y] = ".";
     this.grid[nextX][this.pos.y] = this.block;
   }
 
   hasFalling() {
-    return this.pos.x !== this.height;
+    return this.isFalling;
   }
 
   drop(block) {
-    const hasBlock = this.grid.slice(0,-1).some(row => row.includes(this.block));
-    if (hasBlock) throw new Error("already falling");
+    if (this.isFalling) throw new Error("already falling");
     this.block = block;
+    this.isFalling = true;
     this.grid[this.pos.x = 0][this.pos.y] = block;
   }
 
