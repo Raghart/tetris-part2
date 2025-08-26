@@ -1,5 +1,3 @@
-import { reverse } from "lodash";
-
 export class RotatingShape {
     constructor (matrix) {
         this.matrix = matrix;
@@ -12,8 +10,14 @@ export class RotatingShape {
 
     rotateRight() {
         const rotatedMatrix = [];
-        for (let i = 0; i < this.matrix.length; i++) { rotatedMatrix.push(this.matrix.map(row => row[i])); }
+        for (let i=0; i < this.matrix.length; i++) { rotatedMatrix.push(this.matrix.map(row => row[i])); }
         return new RotatingShape(rotatedMatrix.map(row => [...row].reverse()));
+    }
+
+    rotateLeft() {
+        const rotatedMatrix = []
+        for (let i = this.matrix.length - 1; i >= 0; i--) { rotatedMatrix.push(this.matrix.map(row => row[i]))};
+        return new RotatingShape(rotatedMatrix);
     }
 
     toString() {
