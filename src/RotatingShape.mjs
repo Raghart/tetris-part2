@@ -21,6 +21,6 @@ export class RotatingShape {
     }
 
     toString() {
-        return this.matrix.map(row => row.join("")).join("\n") + "\n"
+        return this.matrix.map(row => row.join("")).join("\n") + "\n";
     }
 };
