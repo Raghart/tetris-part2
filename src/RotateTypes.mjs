@@ -1,9 +1,8 @@
-export class RotateNormal {
+export class NormalRotate {
     rotateRight(matrix) {
         const rotatedMatrix = [];
         for (let i=0; i < matrix.length; i++) { rotatedMatrix.push(matrix.map(row => row[i])); }
-        const testList = rotatedMatrix.map(row => [...row].reverse());
-        return testList;
+        return rotatedMatrix.map(row => [...row].reverse());
     };
 
     rotateLeft(matrix) {

@@ -1,6 +1,9 @@
+import { NormalRotate } from "./RotateTypes.mjs";
+
 export class RotatingShape {
-    constructor (matrix) {
+    constructor (matrix, rotateBehavior = new NormalRotate) {
         this.matrix = matrix;
+        this.rotateBehavior = rotateBehavior;
     }
 
     static fromString(str) {
@@ -9,15 +12,11 @@ export class RotatingShape {
     }
 
     rotateRight() {
-        const rotatedMatrix = [];
-        for (let i=0; i < this.matrix.length; i++) { rotatedMatrix.push(this.matrix.map(row => row[i])); }
-        return new RotatingShape(rotatedMatrix.map(row => [...row].reverse()));
+        return new RotatingShape(this.rotateBehavior.rotateRight(this.matrix));
     }
 
     rotateLeft() {
-        const rotatedMatrix = [];
-        for (let i = this.matrix.length - 1; i >= 0; i--) { rotatedMatrix.push(this.matrix.map(row => row[i]))};
-        return new RotatingShape(rotatedMatrix);
+        return new RotatingShape(this.rotateBehavior.rotateLeft(this.matrix));
     }
 
     toString() {
