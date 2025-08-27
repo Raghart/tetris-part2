@@ -6,7 +6,7 @@ export class RotatingShape {
         this.rotateBehavior = rotateBehavior;
     }
 
-    static fromString(str) {
+    static fromString(str, rotateBehavior) {
         const rows = str.split("\n").map(row => row.trim().split(""));
         return new RotatingShape(rows);
     }

@@ -1,3 +1,4 @@
+import { IRotate } from "./RotateTypes.mjs";
 import { RotatingShape } from "./RotatingShape.mjs"
 
 export class Tetromino {
@@ -11,7 +12,7 @@ export class Tetromino {
      .....
      IIII.
      .....
-     .....`
+     .....`, new IRotate
     );
 
     static O_SHAPE = RotatingShape.fromString(

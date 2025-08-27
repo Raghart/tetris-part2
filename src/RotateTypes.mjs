@@ -10,4 +10,10 @@ export class NormalRotate {
         for (let i = matrix.length - 1; i >= 0; i--) { rotatedMatrix.push(matrix.map(row => row[i]))};
         return rotatedMatrix;
     };
-}
+};
+
+export class IRotate {
+    rotateRight(matrix) {
+        console.log(matrix);
+    };
+};
