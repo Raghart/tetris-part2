@@ -15,7 +15,7 @@ export class RotatingShape {
     }
 
     rotateLeft() {
-        const rotatedMatrix = []
+        const rotatedMatrix = [];
         for (let i = this.matrix.length - 1; i >= 0; i--) { rotatedMatrix.push(this.matrix.map(row => row[i]))};
         return new RotatingShape(rotatedMatrix);
     }

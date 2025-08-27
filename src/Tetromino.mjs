@@ -5,4 +5,12 @@ export class Tetromino {
     `.T.
      TTT
      ...`);
+
+     static I_SHAPE = RotatingShape.fromString(
+    `.....
+     .....
+     IIII.
+     .....
+     .....`
+    );
 };
