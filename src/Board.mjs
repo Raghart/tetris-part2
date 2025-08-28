@@ -11,7 +11,7 @@ export class Board {
   constructor(width, height) {
     this.width = width;
     this.height = height;
-    this.grid = Array.from({ length: width }, () => Array.from({ length: height }, () => "."));
+    this.grid = Array.from({ length: height }, () => Array.from({ length: width }, () => "."));
     this.pos = { x: 0, y: Math.floor(this.width / 2) };
     this.block = "";
     this.isFalling = false;
@@ -30,9 +30,7 @@ export class Board {
     this.grid[nextX][this.pos.y] = this.block.matrix[0][0];
   }
 
-  hasFalling() {
-    return this.isFalling;
-  }
+  hasFalling() { return this.isFalling; }
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
