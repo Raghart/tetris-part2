@@ -1,3 +1,5 @@
+import { Tetromino } from "./Tetromino.mjs";
+
 export class Board {
   width;
   height;
@@ -25,7 +27,7 @@ export class Board {
       return;
     };
     this.grid[currentX][this.pos.y] = ".";
-    this.grid[nextX][this.pos.y] = this.block;
+    this.grid[nextX][this.pos.y] = this.block.matrix[0][0];
   }
 
   hasFalling() {
@@ -34,9 +36,9 @@ export class Board {
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
-    this.block = block;
+    this.block = Tetromino.oneBlock(block);
     this.isFalling = true;
-    this.grid[this.pos.x = 0][this.pos.y] = block;
+    this.grid[this.pos.x = 0][this.pos.y] = this.block.matrix[0][0];
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }

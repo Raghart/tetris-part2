@@ -20,4 +20,6 @@ export class Tetromino {
      .OO
      ...`, new ORotate
     );
+
+    static oneBlock(str) { return RotatingShape.fromString(str, new ORotate) };
 };
