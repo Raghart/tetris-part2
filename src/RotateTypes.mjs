@@ -23,3 +23,8 @@ export class IRotate {
         return this.rotateRight(matrix);
     }
 };
+
+export class ORotate {
+    rotateRight(matrix) { return matrix; }
+    rotateLeft(matrix) { return matrix };
+};

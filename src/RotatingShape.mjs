@@ -12,11 +12,11 @@ export class RotatingShape {
     }
 
     rotateRight() {
-        return new RotatingShape(this.rotateBehavior.rotateRight(this.matrix));
+        return new RotatingShape(this.rotateBehavior.rotateRight(this.matrix), this.rotateBehavior);
     }
 
     rotateLeft() {
-        return new RotatingShape(this.rotateBehavior.rotateLeft(this.matrix));
+        return new RotatingShape(this.rotateBehavior.rotateLeft(this.matrix), this.rotateBehavior);
     }
 
     toString() {
