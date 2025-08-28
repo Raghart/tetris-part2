@@ -14,6 +14,12 @@ export class NormalRotate {
 
 export class IRotate {
     rotateRight(matrix) {
-        console.log(matrix);
+        const rotatedMatrix = [];
+        for (let i = 0; i < matrix.length; i++) { rotatedMatrix.push(matrix.map(row => row[i]))}
+        return rotatedMatrix;
     };
+
+    rotateLeft(matrix) {
+        return this.rotateRight(matrix);
+    }
 };

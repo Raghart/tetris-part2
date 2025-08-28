@@ -8,7 +8,7 @@ export class RotatingShape {
 
     static fromString(str, rotateBehavior) {
         const rows = str.split("\n").map(row => row.trim().split(""));
-        return new RotatingShape(rows);
+        return new RotatingShape(rows, rotateBehavior);
     }
 
     rotateRight() {
