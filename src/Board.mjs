@@ -36,9 +36,17 @@ export class Board {
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
-    this.block = Tetromino.oneBlock(block);
+    this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
-    this.grid[this.pos.x = 0][this.pos.y] = this.block.matrix[0][0];
+    const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
+
+    for (let row=0; row < this.block.matrix.length; row++) {
+      for (let col=0; col < this.block.matrix[row].length; col++) {
+        if (this.block.matrix[row][col] !== ".") { 
+          this.grid[this.pos.x = 0 + row][midCol + col] = this.block.matrix[row][col] 
+        }
+      }
+    }
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
