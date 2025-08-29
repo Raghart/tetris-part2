@@ -54,6 +54,14 @@ export class Board {
       }
   }}
 
+  cleanBoard(position) {
+    const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
+    for (let row=0; row < this.block.matrix.length; row++) {
+      for (let col=0; col < this.block.matrix[row].length; col++) {
+        if (this.block.matrix[row][col] !== ".") { this.grid[position + row][midCol + col] = "."; }
+      }
+  }}
+
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
