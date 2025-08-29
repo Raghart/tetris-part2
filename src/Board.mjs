@@ -26,7 +26,7 @@ export class Board {
       return;
     }
 
-    if (this.block.matrix.length !== 1 && (nextX >= this.height - 1 || this.grid[nextX+1][this.pos.y] === "T")) {
+    if (this.block.matrix.length !== 1 && (nextX >= this.height - 1 || this.grid[nextX+1].includes("T"))) {
       this.isFalling = false;
       return;
     };
