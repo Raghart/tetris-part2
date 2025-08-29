@@ -39,13 +39,7 @@ export class Board {
       }
     }
 
-    for (let row=0; row < this.block.matrix.length; row++) {
-      for (let col=0; col < this.block.matrix[row].length; col++) {
-        if (this.block.matrix[row][col] !== ".") {
-          this.grid[nextX + row][col+ midCol] = this.block.matrix[row][col]
-        }
-      }
-    }
+    this.drawBlock(this.block.matrix, nextX);
   }
 
   hasFalling() { return this.isFalling; }
@@ -58,7 +52,7 @@ export class Board {
           this.grid[position + row][midCol + col] = block[row][col];
         }
       }
-    }}
+  }}
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
