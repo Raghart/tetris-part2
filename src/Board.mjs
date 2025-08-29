@@ -36,16 +36,6 @@ export class Board {
 
   hasFalling() { return this.isFalling; }
 
-  drawBlock(block, position) {
-    const midCol = Math.floor((this.grid[0].length - block[0].length)/2)
-    for (let row=0; row < block.length; row++) {
-      for (let col=0; col < block[row].length; col++) {
-        if (block[row][col] !== ".") { 
-          this.grid[position + row][midCol + col] = block[row][col];
-        }
-      }
-  }}
-
   updateBlock(position, block, fillStr = null) {
     const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
     for (let row=0; row < this.block.matrix.length; row++) {
