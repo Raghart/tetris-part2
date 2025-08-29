@@ -45,8 +45,10 @@ describe("Falling tetrominoes", () => {
   test.skip("stop when they land on another block", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
+    console.log(board.toString());
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
+    console.log(board.toString());
 
     expect(board.toString()).to.equalShape(
       `..........

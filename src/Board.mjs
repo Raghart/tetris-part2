@@ -21,15 +21,15 @@ export class Board {
     if (!this.hasFalling()) return;
     const currentX = this.pos.x
     const nextX = ++this.pos.x;
-    if (this.block.matrix.length === 1) {
-      if (nextX >= this.height || this.grid[nextX][this.pos.y] === "X") {
-        this.isFalling = false; return;
-      }} else {
-      if (nextX >= this.height - 1 || this.grid[nextX][this.pos.y] === "X") {
-      this.isFalling = false;
+    if (this.block.matrix.length === 1 && (nextX >= this.height || this.grid[nextX][this.pos.y] === "X")) {
+      this.isFalling = false; 
       return;
     }
-  };
+
+    if (this.block.matrix.length !== 1 && (nextX >= this.height - 1 || this.grid[nextX+1][this.pos.y] === "T")) {
+      this.isFalling = false;
+      return;
+    };
     this.updateBlock(currentX, this.block.matrix, ".");
     this.updateBlock(nextX, this.block.matrix);
   }
