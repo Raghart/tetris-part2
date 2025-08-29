@@ -30,8 +30,8 @@ export class Board {
       return;
     }
   };
-    this.cleanBoard(currentX);
-    this.drawBlock(this.block.matrix, nextX);
+    this.updateBlock(currentX, this.block.matrix, ".");
+    this.updateBlock(nextX, this.block.matrix);
   }
 
   hasFalling() { return this.isFalling; }
@@ -54,11 +54,13 @@ export class Board {
       }
   }}
 
-  updateBlock(block, position, fillStr = null) {
+  updateBlock(position, block, fillStr = null) {
     const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
-        if (this.block.matrix[row][col] !== ".") { this.grid[position + row][midCol + col] = fillStr ?? block[row][col]; }
+        if (this.block.matrix[row][col] !== ".") { 
+          this.grid[position + row][midCol + col] = fillStr ?? block[row][col]; 
+        }
       }
   }}
 
@@ -67,7 +69,7 @@ export class Board {
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
     this.pos.x = 0;
-    this.drawBlock(this.block.matrix, 0);
+    this.updateBlock(0, this.block.matrix);
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
