@@ -26,6 +26,15 @@ export class Board {
       this.isFalling = false;
       return;
     };
+    const testGrid = this.grid;
+    const midCol = Math.floor((testGrid.length - this.block.matrix[0].length)/2)
+    for (let row=0; row < this.block.matrix.length; row++) {
+      for (let col=0; col < this.block.matrix[row].length; col++) {
+        if (this.block.matrix[row][col] !== ".") {
+          testGrid[nextX + row][col+ midCol] = this.block.matrix[row][col]
+        }
+      }
+    }
     this.grid[currentX][this.pos.y] = ".";
     this.grid[nextX][this.pos.y] = this.block.matrix[0][0];
   }
