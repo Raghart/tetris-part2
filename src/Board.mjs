@@ -30,15 +30,7 @@ export class Board {
       return;
     }
   };
-    const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
-    for (let row=0; row < this.block.matrix.length; row++) {
-      for (let col=0; col < this.block.matrix[row].length; col++) {
-        if (this.block.matrix[row][col] !== ".") {
-          this.grid[currentX + row][col+ midCol] = "."
-        }
-      }
-    }
-
+    this.cleanBoard(currentX);
     this.drawBlock(this.block.matrix, nextX);
   }
 
@@ -59,6 +51,14 @@ export class Board {
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") { this.grid[position + row][midCol + col] = "."; }
+      }
+  }}
+
+  updateBlock(block, position, fillStr = null) {
+    const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
+    for (let row=0; row < this.block.matrix.length; row++) {
+      for (let col=0; col < this.block.matrix[row].length; col++) {
+        if (this.block.matrix[row][col] !== ".") { this.grid[position + row][midCol + col] = fillStr ?? block[row][col]; }
       }
   }}
 
