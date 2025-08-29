@@ -21,12 +21,16 @@ export class Board {
     if (!this.hasFalling()) return;
     const currentX = this.pos.x
     const nextX = ++this.pos.x;
-
-    if (nextX >= this.height || this.grid[nextX][this.pos.y] === "X") {
+    if (this.block.matrix.length === 1) {
+      if (nextX >= this.height || this.grid[nextX][this.pos.y] === "X") {
+        this.isFalling = false;return;
+      }} else {
+      if (nextX >= this.height - 1 || this.grid[nextX][this.pos.y] === "X") {
       this.isFalling = false;
       return;
-    };
-    const midCol = Math.floor((this.grid.length - this.block.matrix[0].length)/2)
+    }
+  };
+    const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") {
@@ -50,12 +54,13 @@ export class Board {
     if (this.isFalling) throw new Error("already falling");
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
+    this.pos.x = 0;
     const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
 
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") { 
-          this.grid[this.pos.x = 0 + row][midCol + col] = this.block.matrix[row][col] 
+          this.grid[0 + row][midCol + col] = this.block.matrix[row][col];
         }
       }
     }
