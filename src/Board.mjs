@@ -23,7 +23,7 @@ export class Board {
     const nextX = ++this.pos.x;
     if (this.block.matrix.length === 1) {
       if (nextX >= this.height || this.grid[nextX][this.pos.y] === "X") {
-        this.isFalling = false;return;
+        this.isFalling = false; return;
       }} else {
       if (nextX >= this.height - 1 || this.grid[nextX][this.pos.y] === "X") {
       this.isFalling = false;
@@ -49,6 +49,15 @@ export class Board {
   }
 
   hasFalling() { return this.isFalling; }
+
+  drawInBoard(block, position) {
+    for (let row=0; row < this.block.matrix.length; row++) {
+      for (let col=0; col < this.block.matrix[row].length; col++) {
+        if (this.block.matrix[row][col] !== "." && Array.isArray(block)) { 
+          this.grid[position + row][midCol + col] = block[row][col];
+        } else { this.grid[position + row][midCol + col] = "."; }
+      }
+    }}
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
