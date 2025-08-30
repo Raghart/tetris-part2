@@ -18,7 +18,7 @@ describe("Moving Falling Tetrominoes", () => {
         tetromino = Tetromino.T_SHAPE;
     });
 
-    test.skip("a falling tetromino can be moved left", () => {
+    test("a falling tetromino can be moved left", () => {
         board.drop(tetromino);
         board.tryMove(tetromino.moveLeft());
         expect(board.toString()).to.equalShape(
