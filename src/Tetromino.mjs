@@ -34,7 +34,9 @@ export class Tetromino {
 
     static oneBlock(str) { return new Tetromino(RotatingShape.fromString(str, new ORotate)) };
 
-    moveLeft() {
-        return { dx: -1, dy: 0 };
-    }
+    moveLeft() { return { dx: -1, dy: 0 }; };
+
+    moveRight() { return { dx: 1, dy: 0 }; };
+
+    moveDown() { return { dx: 0, dy: 1 }; };
 };

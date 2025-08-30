@@ -65,6 +65,11 @@ export class Board {
       this.updateBlock(this.pos, this.block.matrix, ".");
       this.updateBlock({ x: this.pos.x, y: ++this.pos.y }, this.block.matrix);
     }
+
+    if (dy > 0) {
+      this.updateBlock(this.pos, this.block.matrix, ".");
+      this.updateBlock({ x: ++this.pos.x, y: this.pos.y }, this.block.matrix);
+    }
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
