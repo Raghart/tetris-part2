@@ -57,7 +57,7 @@ describe("Moving Falling Tetrominoes", () => {
         )
     });
 });
-/*
+
 describe("Tetrominoes can't go beyond the board", () => {
     let board;
     let tetromino;
@@ -98,7 +98,7 @@ describe("Tetrominoes can't go beyond the board", () => {
         )
     });
 });
-*/
+
 /*
 describe("Tetrominoes can't go through other blocks in any direction", () => {
     let board;

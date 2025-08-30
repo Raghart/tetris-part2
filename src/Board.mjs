@@ -12,25 +12,25 @@ export class Board {
     this.width = width;
     this.height = height;
     this.grid = Array.from({ length: height }, () => Array.from({ length: width }, () => "."));
-    this.pos = { x: 0, y: Math.floor(this.width / 2) };
+    this.pos = { y: 0, x: Math.floor(this.width / 2) };
     this.block = null;
     this.isFalling = false;
   }
 
   tick() {
     if (!this.hasFalling()) return;
-    const nextX = this.pos.x + 1;
-    if (this.block.matrix.length === 1 && (nextX >= this.height || this.grid[nextX][this.pos.y] === "X")) {
+    const nextRow = this.pos.y + 1;
+    if (this.block.matrix.length === 1 && (nextRow >= this.height || this.grid[nextRow][this.pos.x] === "X")) {
       this.isFalling = false; 
       return;
     }
 
-    if (this.block.matrix.length !== 1 && (nextX >= this.height - 1 || this.grid[nextX+1].includes("T"))) {
+    if (this.block.matrix.length !== 1 && (nextRow >= this.height - 1 || this.grid[nextRow+1].includes("T"))) {
       this.isFalling = false;
       return;
     };
     this.updateBlock(this.pos, this.block.matrix, ".");
-    this.pos.x = nextX;
+    this.pos.y = nextRow;
     this.updateBlock(this.pos, this.block.matrix);
   }
 
@@ -40,7 +40,7 @@ export class Board {
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") { 
-          this.grid[position.x + row][position.y + col] = fillStr ?? block[row][col]; 
+          this.grid[position.y + row][position.x + col] = fillStr ?? block[row][col]; 
         }
       }
   }}
@@ -49,16 +49,16 @@ export class Board {
     if (this.isFalling) throw new Error("already falling");
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
-    this.pos.x = 0;
-    this.pos.y = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
+    this.pos.y = 0;
+    this.pos.x = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
     this.updateBlock(this.pos, this.block.matrix);
   }
 
   tryMove(move) {
-    const { dy, dx } = move;
+    const { dx, dy } = move;
     this.updateBlock(this.pos, this.block.matrix, ".");
-    this.pos.x += dx;
     this.pos.y += dy;
+    this.pos.x += dx;
     this.updateBlock(this.pos, this.block.matrix);
   }
 
