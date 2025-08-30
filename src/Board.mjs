@@ -20,7 +20,7 @@ export class Board {
   tick() {
     if (!this.hasFalling()) return;
     const currentX = this.pos.x
-    const nextX = ++this.pos.x;
+    const nextX = this.pos.x + 1;
     if (this.block.matrix.length === 1 && (nextX >= this.height || this.grid[nextX][this.pos.y] === "X")) {
       this.isFalling = false; 
       return;
@@ -30,18 +30,18 @@ export class Board {
       this.isFalling = false;
       return;
     };
-    this.updateBlock(currentX, this.block.matrix, ".");
-    this.updateBlock(nextX, this.block.matrix);
+    this.updateBlock(this.pos, this.block.matrix, ".");
+    ++this.pos.x
+    this.updateBlock(this.pos, this.block.matrix);
   }
 
   hasFalling() { return this.isFalling; }
 
   updateBlock(position, block, fillStr = null) {
-    const midCol = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") { 
-          this.grid[position + row][midCol + col] = fillStr ?? block[row][col]; 
+          this.grid[position.x + row][position.y + col] = fillStr ?? block[row][col]; 
         }
       }
   }}
@@ -51,10 +51,13 @@ export class Board {
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
     this.pos.x = 0;
-    this.updateBlock(0, this.block.matrix);
+    this.pos.y = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
+    this.updateBlock(this.pos, this.block.matrix);
   }
 
-  makeMove() {
+  tryMove(move) {
+    const { dx, dy } = move;
+    if (dx < 0) {}
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }

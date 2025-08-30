@@ -20,7 +20,7 @@ describe("Moving Falling Tetrominoes", () => {
 
     test.skip("a falling tetromino can be moved left", () => {
         board.drop(tetromino);
-        tetromino.moveLeft();
+        board.tryMove(tetromino.moveLeft());
         expect(board.toString()).to.equalShape(
         `...T......
          ..TTT.....
@@ -33,7 +33,7 @@ describe("Moving Falling Tetrominoes", () => {
 
     test.skip("a falling tetromino can be moved right", () => {
         board.drop(tetromino);
-        tetromino.moveRight();
+        board.tryMove(tetromino.moveRight());
         expect(board.toString()).to.equalShape(
         `.....T....
          ....TTT...
@@ -46,7 +46,7 @@ describe("Moving Falling Tetrominoes", () => {
 
     test.skip("a falling tetromino can be moved down", () => {
         board.drop(tetromino);
-        tetromino.moveDown();
+        board.tryMove(tetromino.moveDown());
         expect(board.toString()).to.equalShape(
         `..........
          ....T.....
@@ -69,7 +69,7 @@ describe("Tetrominoes can't go beyond the board", () => {
     });
 
     test.skip("It can't be moved left beyond the board", () => {
-        repeatMove(() => tetromino.moveLeft());
+        repeatMove(() => board.tryMove(tetromino.moveLeft()));
         expect(board.toString()).to.equalShape(
         `.T........
          TTT.......
@@ -79,7 +79,7 @@ describe("Tetrominoes can't go beyond the board", () => {
     });
 
     test.skip("It can't be moved right beyond the board", () => {
-        repeatMove(() => tetromino.moveRight());
+        repeatMove(() => board.tryMove(tetromino.moveRight()));
         expect(board.toString()).to.equalShape(
         `........T.
          .......TTT
@@ -89,7 +89,7 @@ describe("Tetrominoes can't go beyond the board", () => {
     });
 
     test.skip("It can't be moved down beyond the board (will stop falling)", () => {
-        repeatMove(() => tetromino.moveDown());
+        repeatMove(() => board.tryMove(tetromino.moveDown()));
         expect(board.toString()).to.equalShape(
         `..........
          ..........
@@ -115,10 +115,10 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test.skip("It can't be moved down through other blocks (will stop falling)", () => {
-        repeatMove(() => firstTetromino.moveDown());
+        repeatMove(() => board.tryMove(firstTetromino.moveDown()));
         
         board.drop(secondTetromino)
-        repeatMove(() => secondTetromino.moveDown());
+        repeatMove(() => board.tryMove(secondTetromino.moveDown()));
 
         expect(board.toString()).to.equalShape(
         `....OO....
@@ -129,15 +129,15 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test.skip("It can't be moved left through other blocks", () => {
-        repeatMove(() => firstTetromino.moveLeft());
-        repeatMove(() => firstTetromino.moveDown());
+        repeatMove(() => board.tryMove(firstTetromino.moveLeft()));
+        repeatMove(() => board.tryMove(firstTetromino.moveDown()));
         
         board.drop(secondTetromino)
-        repeatMove(() => secondTetromino.moveLeft());
-        repeatMove(() => secondTetromino.moveDown());
+        repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
+        repeatMove(() => board.tryMove(secondTetromino.moveDown()));
 
         board.drop(thirdTetromino)
-        repeatMove(() => thirdTetromino.moveLeft());
+        repeatMove(() => board.tryMove(thirdTetromino.moveLeft()));
 
         expect(board.toString()).to.equalShape(
         `OOOO......
@@ -148,15 +148,15 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test.skip("It can't be moved right through other blocks", () => {
-        repeatMove(() => firstTetromino.moveRight());
-        repeatMove(() => firstTetromino.moveDown());
+        repeatMove(() => board.tryMove(firstTetromino.moveRight()));
+        repeatMove(() => board.tryMove(firstTetromino.moveDown()));
         
         board.drop(secondTetromino)
-        repeatMove(() => secondTetromino.moveRight());
-        repeatMove(() => secondTetromino.moveDown());
+        repeatMove(() => board.tryMove(secondTetromino.moveRight()));
+        repeatMove(() => board.tryMove(secondTetromino.moveDown()));
 
         board.drop(thirdTetromino)
-        repeatMove(() => thirdTetromino.moveRight());
+        repeatMove(() => board.tryMove(thirdTetromino.moveRight()));
 
         expect(board.toString()).to.equalShape(
         `......OOOO
