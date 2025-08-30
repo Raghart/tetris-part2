@@ -55,12 +55,11 @@ export class Board {
   }
 
   tryMove(move) {
-    const { dx, dy } = move;
+    const { dy, dx } = move;
     this.updateBlock(this.pos, this.block.matrix, ".");
-
-    if (dy > 0) {
-      this.updateBlock({ x: ++this.pos.x, y: this.pos.y }, this.block.matrix);
-    }
+    this.pos.x += dx;
+    this.pos.y += dy;
+    this.updateBlock(this.pos, this.block.matrix);
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
