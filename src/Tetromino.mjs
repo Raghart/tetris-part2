@@ -2,10 +2,15 @@ import { IRotate, ORotate } from "./RotateTypes.mjs";
 import { RotatingShape } from "./RotatingShape.mjs"
 
 export class Tetromino {
+    constructor(RotatingShape) {
+        this.RotatingShape = RotatingShape;
+    }
     static T_SHAPE = RotatingShape.fromString(
     `.T.
      TTT
      ...`);
+
+    get matrix() { return this.RotatingShape.matrix; };
 
     static I_SHAPE = RotatingShape.fromString(
     `.....
@@ -22,4 +27,8 @@ export class Tetromino {
     );
 
     static oneBlock(str) { return RotatingShape.fromString(str, new ORotate) };
+
+    moveLeft() {
+        
+    }
 };
