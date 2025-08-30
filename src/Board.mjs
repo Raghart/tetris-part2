@@ -13,7 +13,7 @@ export class Board {
     this.height = height;
     this.grid = Array.from({ length: height }, () => Array.from({ length: width }, () => "."));
     this.pos = { x: 0, y: Math.floor(this.width / 2) };
-    this.block = "";
+    this.block = null;
     this.isFalling = false;
   }
 
@@ -52,6 +52,9 @@ export class Board {
     this.isFalling = true;
     this.pos.x = 0;
     this.updateBlock(0, this.block.matrix);
+  }
+
+  makeMove() {
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }

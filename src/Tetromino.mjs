@@ -18,23 +18,23 @@ export class Tetromino {
 
     get matrix() { return this.RotatingShape.matrix; };
 
-    static I_SHAPE = RotatingShape.fromString(
+    static I_SHAPE = new Tetromino(RotatingShape.fromString(
     `.....
      .....
      IIII.
      .....
      .....`, new IRotate
-    );
+    ));
 
-    static O_SHAPE = RotatingShape.fromString(
+    static O_SHAPE = new Tetromino(RotatingShape.fromString(
     `.OO
      .OO
      ...`, new ORotate
-    );
+    ));
 
-    static oneBlock(str) { return RotatingShape.fromString(str, new ORotate) };
+    static oneBlock(str) { return new Tetromino(RotatingShape.fromString(str, new ORotate)) };
 
     moveLeft() {
-        
+        return { dx: -1, dy: 0 };
     }
 };
