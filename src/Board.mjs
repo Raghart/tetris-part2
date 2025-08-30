@@ -56,18 +56,9 @@ export class Board {
 
   tryMove(move) {
     const { dx, dy } = move;
-    if (dx < 0) {
-      this.updateBlock(this.pos, this.block.matrix, ".");
-      this.updateBlock({ x: this.pos.x, y: --this.pos.y }, this.block.matrix);
-    }
-
-    if (dx > 0) {
-      this.updateBlock(this.pos, this.block.matrix, ".");
-      this.updateBlock({ x: this.pos.x, y: ++this.pos.y }, this.block.matrix);
-    }
+    this.updateBlock(this.pos, this.block.matrix, ".");
 
     if (dy > 0) {
-      this.updateBlock(this.pos, this.block.matrix, ".");
       this.updateBlock({ x: ++this.pos.x, y: this.pos.y }, this.block.matrix);
     }
   }
