@@ -99,7 +99,6 @@ describe("Tetrominoes can't go beyond the board", () => {
     });
 });
 
-/*
 describe("Tetrominoes can't go through other blocks in any direction", () => {
     let board;
     let firstTetromino;
@@ -114,11 +113,13 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
         board.drop(firstTetromino);
     });
 
-    test.skip("It can't be moved down through other blocks (will stop falling)", () => {
+    test("It can't be moved down through other blocks (will stop falling)", () => {
         repeatMove(() => board.tryMove(firstTetromino.moveDown()));
+        console.log(board.toString());
         
         board.drop(secondTetromino)
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
+        console.log(board.toString());
 
         expect(board.toString()).to.equalShape(
         `....OO....
@@ -166,4 +167,3 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
         )
     });
 });
-*/

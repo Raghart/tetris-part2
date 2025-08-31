@@ -59,11 +59,12 @@ export class Board {
     const { dx, dy } = move;
     if (this.pos.x + dx < 0) return;
     if (this.pos.x + dx + this.block.width > this.width) return;
-    if (this.pos.y + dy + this.block.height > this.height) {
+    if (this.pos.y + dy + this.block.height > this.height || 
+      this.grid[dy+this.block.height][this.width/2] !== ".") {
       this.isFalling = false;
       return;
     };
-    
+
     this.updateBlock(this.pos, this.block.matrix, ".");
     this.pos.y += dy;
     this.pos.x += dx;
