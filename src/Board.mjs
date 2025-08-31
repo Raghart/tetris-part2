@@ -59,8 +59,8 @@ export class Board {
     const { dx, dy } = move;
     if (this.pos.x + dx < 0) return;
     if (this.pos.x + dx + this.block.width > this.width) return;
-    if (this.pos.y + dy + this.block.height > this.height || 
-      this.grid[dy+this.block.height][this.width/2] !== ".") {
+
+    if (this.pos.y + dy + this.block.height > this.height || this.ifBlockBellow()) {
       this.isFalling = false;
       return;
     };
@@ -69,6 +69,14 @@ export class Board {
     this.pos.y += dy;
     this.pos.x += dx;
     this.updateBlock(this.pos, this.block.matrix);
+  }
+
+  ifBlockBellow() {
+    for(let i=0; i < this.block.width; i++) {
+     if (this.grid[this.pos.y+this.block.height][this.pos.x+i] !== ".") {
+      return true;
+     } 
+    }return false;
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
