@@ -60,7 +60,7 @@ export class Board {
     if (this.pos.x + dx < 0) return;
     if (this.pos.x + dx + this.block.width > this.width) return;
 
-    if (this.pos.y + dy + this.block.height > this.height || this.ifBlockBellow()) {
+    if (this.pos.y + dy + this.block.height > this.height || this.blockBellow()) {
       this.isFalling = false;
       return;
     };
@@ -71,7 +71,7 @@ export class Board {
     this.updateBlock(this.pos, this.block.matrix);
   }
 
-  ifBlockBellow() {
+  blockBellow() {
     for(let i=0; i < this.block.width; i++) {
      if (this.grid[this.pos.y+this.block.height][this.pos.x+i] !== ".") {
       return true;
