@@ -25,7 +25,7 @@ export class Board {
       return;
     }
 
-    if (this.block.matrix.length !== 1 && (nextRow >= this.height - 1 || this.grid[nextRow+1].includes("T"))) {
+    if (this.block.matrix.length !== 1 && (nextRow + (this.block.matrix.filter(row => !row.every(cell => cell === "."))).length > this.height || this.grid[nextRow+1].includes("T"))) {
       this.isFalling = false;
       return;
     };
@@ -56,6 +56,12 @@ export class Board {
 
   tryMove(move) {
     const { dx, dy } = move;
+    if (this.pos.x + dx < 0) return;
+    if (this.pos.x + dx + this.block.matrix[0].length > this.width) return;
+    if (this.pos.y + dy + this.block.matrix.filter(row => !row.every(cell => cell === ".")).length > this.height) {
+      this.isFalling = false;
+      return;
+    };
     this.updateBlock(this.pos, this.block.matrix, ".");
     this.pos.y += dy;
     this.pos.x += dx;

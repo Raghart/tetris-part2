@@ -68,7 +68,7 @@ describe("Tetrominoes can't go beyond the board", () => {
         board.drop(tetromino);
     });
 
-    test.skip("It can't be moved left beyond the board", () => {
+    test("It can't be moved left beyond the board", () => {
         repeatMove(() => board.tryMove(tetromino.moveLeft()));
         expect(board.toString()).to.equalShape(
         `.T........
@@ -78,7 +78,7 @@ describe("Tetrominoes can't go beyond the board", () => {
         )
     });
 
-    test.skip("It can't be moved right beyond the board", () => {
+    test("It can't be moved right beyond the board", () => {
         repeatMove(() => board.tryMove(tetromino.moveRight()));
         expect(board.toString()).to.equalShape(
         `........T.
@@ -88,7 +88,7 @@ describe("Tetrominoes can't go beyond the board", () => {
         )
     });
 
-    test.skip("It can't be moved down beyond the board (will stop falling)", () => {
+    test("It can't be moved down beyond the board (will stop falling)", () => {
         repeatMove(() => board.tryMove(tetromino.moveDown()));
         expect(board.toString()).to.equalShape(
         `..........
