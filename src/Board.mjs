@@ -25,7 +25,8 @@ export class Board {
       return;
     }
 
-    if (this.block.matrix.length !== 1 && (nextRow + (this.block.matrix.filter(row => !row.every(cell => cell === "."))).length > this.height || this.grid[nextRow+1].includes("T"))) {
+    if (this.block.matrix.length !== 1 && (nextRow + this.block.height > this.height || 
+      this.grid[nextRow+1].includes("T"))) {
       this.isFalling = false;
       return;
     };
@@ -50,18 +51,19 @@ export class Board {
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
     this.pos.y = 0;
-    this.pos.x = Math.floor((this.grid[0].length - this.block.matrix[0].length)/2);
+    this.pos.x = Math.floor((this.grid[0].length - this.block.width)/2);
     this.updateBlock(this.pos, this.block.matrix);
   }
 
   tryMove(move) {
     const { dx, dy } = move;
     if (this.pos.x + dx < 0) return;
-    if (this.pos.x + dx + this.block.matrix[0].length > this.width) return;
-    if (this.pos.y + dy + this.block.matrix.filter(row => !row.every(cell => cell === ".")).length > this.height) {
+    if (this.pos.x + dx + this.block.width > this.width) return;
+    if (this.pos.y + dy + this.block.height > this.height) {
       this.isFalling = false;
       return;
     };
+    
     this.updateBlock(this.pos, this.block.matrix, ".");
     this.pos.y += dy;
     this.pos.x += dx;

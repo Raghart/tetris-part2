@@ -18,6 +18,10 @@ export class Tetromino {
 
     get matrix() { return this.RotatingShape.matrix; };
 
+    get height() { return this.RotatingShape.matrix.filter(row => !row.every(cell => cell === ".")).length };
+
+    get width() { return this.RotatingShape.matrix[0].length };
+
     static I_SHAPE = new Tetromino(RotatingShape.fromString(
     `.....
      .....
