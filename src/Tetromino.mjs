@@ -22,8 +22,10 @@ export class Tetromino {
 
     get width() { 
         let width = 0;
-        for (let col=0; col < this.RotatingShape.matrix[0].length ;col++) {}
-        return this.RotatingShape.matrix[0].length 
+        for (let col=0; col < this.RotatingShape.matrix[0].length; col++) {
+            if (this.RotatingShape.matrix.some(row => row[col] !== ".")) { width++; }
+        }
+        return width;
     };
     get matrixWidth() { return this.RotatingShape.matrix[0].length };
 
