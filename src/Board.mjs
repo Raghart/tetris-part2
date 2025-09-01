@@ -57,8 +57,8 @@ export class Board {
   tryMove(move) {
     const { dx, dy } = move;
     if (this.pos.x + dx < 0) return;
-    if (this.pos.x + dx + this.block.width > this.width) return;
-
+    if (this.block.width === 2 && this.pos.x + dx + this.block.width >= this.width || this.block.width === 3 && this.pos.x + dx + this.block.width > this.width) return;
+    if(this.blockRight()) return;
     if (this.pos.y + dy + this.block.height > this.height || this.blockBellow()) {
       this.isFalling = false;
       return;
@@ -75,6 +75,14 @@ export class Board {
      if (this.grid[this.pos.y+this.block.height][this.pos.x+i] !== ".") {
       return true;
      } 
+    }return false;
+  }
+
+  blockRight() {
+    for (let i=0; i < this.block.height; i++) {
+      if (this.grid[this.pos.y+i][this.block.width+this.pos.x+1] === "O") {
+        return true
+      }
     }return false;
   }
 
