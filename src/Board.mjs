@@ -20,13 +20,12 @@ export class Board {
   tick() {
     if (!this.hasFalling()) return;
     const nextRow = this.pos.y + 1;
-    if (this.block.matrix.length === 1 && (nextRow >= this.height || this.grid[nextRow][this.pos.x] === "X")) {
+    if (this.block.matrix.length === 1 && (nextRow >= this.height || this.blockBellow())) {
       this.isFalling = false; 
       return;
     }
 
-    if (this.block.matrix.length !== 1 && (nextRow + this.block.height > this.height || 
-      this.grid[nextRow+1].includes("T"))) {
+    if (this.block.matrix.length !== 1 && (nextRow + this.block.height > this.height || this.blockBellow())) {
       this.isFalling = false;
       return;
     };
@@ -51,7 +50,7 @@ export class Board {
     this.block = typeof block === "string" ? Tetromino.oneBlock(block) : block;
     this.isFalling = true;
     this.pos.y = 0;
-    this.pos.x = Math.floor((this.grid[0].length - this.block.width)/2);
+    this.pos.x = Math.floor((this.grid[0].length - this.block.matrixWidth)/2);
     this.updateBlock(this.pos, this.block.matrix);
   }
 
