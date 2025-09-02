@@ -33,6 +33,7 @@ describe("Moving Falling Tetrominoes", () => {
 
     test("a falling tetromino can be moved right", () => {
         board.drop(tetromino);
+        console.log(board.toString())
         board.tryMove(tetromino.moveRight());
         expect(board.toString()).to.equalShape(
         `.....T....
@@ -115,9 +116,12 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
 
     test("It can't be moved down through other blocks (will stop falling)", () => {
         repeatMove(() => board.tryMove(firstTetromino.moveDown()));
+        console.log(board.toString());
         
         board.drop(secondTetromino)
+        console.log(board.toString());
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
+        console.log(board.toString());
 
         expect(board.toString()).to.equalShape(
         `....OO....

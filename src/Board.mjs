@@ -72,16 +72,13 @@ export class Board {
   }
 
   blockBellow() {
-    for(let i=0; i < this.block.width; i++) {
-     if (this.grid[this.pos.y+this.block.height][this.pos.x+i] === "O" || 
-      this.grid[this.pos.y+this.block.height][this.pos.x+i] === "T" || 
-      this.grid[this.pos.y+this.block.height][this.pos.x+i] === "X") {
-      return true;
-     } 
-    }return false;
+    const blockList = ["O","T","X"];
+    return Array.from({ length: this.block.width }).some((_,idx) => 
+      blockList.includes(this.grid[this.pos.y+this.block.height][this.pos.x+idx]))
   }
 
   blockRight() {
+    const blockList = ["O","T","X"];
     for (let i=0; i < this.block.height; i++) {
       if (this.grid[this.pos.y+i][this.block.width+this.pos.x+1] === "O") {
         return true
@@ -93,9 +90,9 @@ export class Board {
     for(let i=0; i < this.block.height; i++) {
       if (this.grid[this.pos.y+i][this.pos.x] === "O") {
         return true;
-      }
-      return false;
-    }
+      };
+    };
+    return false;
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
