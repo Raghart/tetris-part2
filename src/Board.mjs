@@ -87,7 +87,6 @@ export class Board {
     const blockList = ["O","X"];
     return Array.from({ length: this.block.height }).some((_, idx) => 
       blockList.includes(this.grid[this.pos.y+idx][this.pos.x]));
-    return false;
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
