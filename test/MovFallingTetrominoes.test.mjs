@@ -128,16 +128,20 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test.skip("It can't be moved left through other blocks", () => {
+        console.log(board.toString());
         repeatMove(() => board.tryMove(firstTetromino.moveLeft()));
+        console.log(board.toString());
         repeatMove(() => board.tryMove(firstTetromino.moveDown()));
         console.log(board.toString());
         
         board.drop(secondTetromino);
+        console.log(board.toString());
         repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
         console.log(board.toString());
 
         board.drop(thirdTetromino)
+        console.log(board.toString());
         repeatMove(() => board.tryMove(thirdTetromino.moveLeft()));
         console.log(board.toString());
 
@@ -150,22 +154,16 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test("It can't be moved right through other blocks", () => {
-        console.log(board.toString())
         repeatMove(() => board.tryMove(firstTetromino.moveRight()));
-        console.log(board.toString())
         repeatMove(() => board.tryMove(firstTetromino.moveDown()));
-        console.log(board.toString());
         
         board.drop(secondTetromino)
         repeatMove(() => board.tryMove(secondTetromino.moveRight()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
-        console.log(board.toString());
 
         board.drop(thirdTetromino)
-        console.log(board.toString());
         repeatMove(() => board.tryMove(thirdTetromino.moveRight()));
-        console.log(board.toString());
-
+        
         expect(board.toString()).to.equalShape(
         `......OOOO
          ......OOOO

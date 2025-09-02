@@ -56,14 +56,14 @@ export class Board {
 
   tryMove(move) {
     const { dx, dy } = move;
-    if (this.pos.x + dx < 0) return;
-    if (this.block.width === 2 && this.pos.x + dx + this.block.width >= this.width || this.block.width === 3 && this.pos.x + dx + this.block.width > this.width) return;
+    if (this.block.width === 3 && this.pos.x + dx < 0) return;
+    if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
+    if (this.pos.x + this.block.matrixWidth + dx > this.width) return;
     if(this.blockRight()) return;
-    if (this.pos.y + dy + this.block.height > this.height || this.blockBellow()) {
+    if (this.pos.y + dy + this.block.height > this.height || dy > 0 && this.blockBellow()) {
       this.isFalling = false;
       return;
     };
-
     this.updateBlock(this.pos, this.block.matrix, ".");
     this.pos.y += dy;
     this.pos.x += dx;
@@ -72,7 +72,9 @@ export class Board {
 
   blockBellow() {
     for(let i=0; i < this.block.width; i++) {
-     if (this.grid[this.pos.y+this.block.height][this.pos.x+i] !== ".") {
+     if (this.grid[this.pos.y+this.block.height][this.pos.x+i] === "O" || 
+      this.grid[this.pos.y+this.block.height][this.pos.x+i] === "T" || 
+      this.grid[this.pos.y+this.block.height][this.pos.x+i] === "X") {
       return true;
      } 
     }return false;
