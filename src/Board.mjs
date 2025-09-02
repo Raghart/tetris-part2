@@ -79,19 +79,14 @@ export class Board {
 
   blockRight() {
     const blockList = ["O","T","X"];
-    for (let i=0; i < this.block.height; i++) {
-      if (this.grid[this.pos.y+i][this.block.width+this.pos.x+1] === "O") {
-        return true
-      }
-    }return false;
+    return Array.from({ length: this.block.height }).some((_,idx) =>
+      blockList.includes(this.grid[this.pos.y+idx][this.block.matrixWidth+this.pos.x]))
   }
 
   blockLeft() {
-    for(let i=0; i < this.block.height; i++) {
-      if (this.grid[this.pos.y+i][this.pos.x] === "O") {
-        return true;
-      };
-    };
+    const blockList = ["O","X"];
+    return Array.from({ length: this.block.height }).some((_, idx) => 
+      blockList.includes(this.grid[this.pos.y+idx][this.pos.x]));
     return false;
   }
 
