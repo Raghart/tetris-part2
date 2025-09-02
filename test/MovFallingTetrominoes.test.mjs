@@ -127,7 +127,7 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
         )
     });
 
-    test.skip("It can't be moved left through other blocks", () => {
+    test("It can't be moved left through other blocks", () => {
         console.log(board.toString());
         repeatMove(() => board.tryMove(firstTetromino.moveLeft()));
         console.log(board.toString());

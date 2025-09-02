@@ -60,6 +60,7 @@ export class Board {
     if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
     if (this.pos.x + this.block.matrixWidth + dx > this.width) return;
     if(this.blockRight()) return;
+    if (this.blockLeft()) return;
     if (this.pos.y + dy + this.block.height > this.height || dy > 0 && this.blockBellow()) {
       this.isFalling = false;
       return;
@@ -86,6 +87,15 @@ export class Board {
         return true
       }
     }return false;
+  }
+
+  blockLeft() {
+    for(let i=0; i < this.block.height; i++) {
+      if (this.grid[this.pos.y+i][this.pos.x] === "O") {
+        return true;
+      }
+      return false;
+    }
   }
 
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
