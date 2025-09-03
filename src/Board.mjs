@@ -30,36 +30,29 @@ export class Board {
       return;
     };
     const move = { dy: 1, dx: 0 };
-    this.updateBlock(this.block, this.pos, ".");
-    this.pos.y = nextRow;
-    this.updateBlock(this.block);
+    this.updateBlock(this.block, move);
   }
 
   hasFalling() { return this.isFalling; }
 
-  updateBlock(block, position = this.pos, fillStr = null, move = null) {
+  updateBlock(block, move) {
     for (let row=0; row < block.matrix.length; row++) {
       for (let col=0; col < block.matrix[row].length; col++) { 
         if (block.matrix[row][col] !== ".") { 
-          this.grid[position.y + row][position.x + col] = "."; 
+          this.grid[this.pos.y + row][this.pos.x + col] = "."; 
         }
       }
     } 
-    if (move?.dx > 0) {
-      this.pos.x += move?.dx;
-      this.pos.y += move?.dy;
-      for (let row=0; row < block.matrix.length; row++) {
-        for (let col=0; col < block.matrix[row].length; col++) {
-        if (block.matrix[row][col] !== ".") { 
-          this.grid[position.y + row][position.x + col] = block.matrix[row][col]; 
-        }
-      }}  }
+
+    this.pos.x += move.dx;
+    this.pos.y += move.dy;
     for (let row=0; row < block.matrix.length; row++) {
-      for (let col=0; col < block.matrix[row].length; col++) { if (block.matrix[row][col] !== ".") { 
-          this.grid[position.y + row][position.x + col] = fillStr ?? block.matrix[row][col]; 
-        }
+      for (let col=0; col < block.matrix[row].length; col++) {
+      if (block.matrix[row][col] !== ".") { 
+        this.grid[this.pos.y + row][this.pos.x + col] = block.matrix[row][col]; 
+      }
+    }}  
     }
-    }}
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
@@ -67,7 +60,7 @@ export class Board {
     this.isFalling = true;
     this.pos.y = 0;
     this.pos.x = Math.floor((this.grid[0].length - this.block.matrixWidth)/2);
-    this.updateBlock(this.block);
+    this.updateBlock(this.block, { dx: 0, dy: 0 });
   }
 
   tryMove(move) {
@@ -80,10 +73,7 @@ export class Board {
       this.isFalling = false;
       return;
     };
-    this.updateBlock(this.block, this.pos, ".");
-    this.pos.y += dy;
-    this.pos.x += dx;
-    this.updateBlock(this.block);
+    this.updateBlock(this.block, move);
   }
 
   isBlockBellow() {
