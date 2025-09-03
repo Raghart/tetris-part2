@@ -20,12 +20,12 @@ export class Board {
   tick() {
     if (!this.hasFalling()) return;
     const nextRow = this.pos.y + 1;
-    if (this.block.matrix.length === 1 && (nextRow >= this.height || this.blockBellow())) {
+    if (this.block.matrix.length === 1 && (nextRow >= this.height || this.isBlockBellow())) {
       this.isFalling = false; 
       return;
     }
 
-    if (this.block.matrix.length !== 1 && (nextRow + this.block.height > this.height || this.blockBellow())) {
+    if (this.block.matrix.length !== 1 && (nextRow + this.block.height > this.height || this.isBlockBellow())) {
       this.isFalling = false;
       return;
     };
@@ -59,8 +59,8 @@ export class Board {
     if (this.block.width === 3 && dx < 0 && this.pos.x + dx < 0) return;
     if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
     if (this.pos.x + this.block.matrixWidth + dx > this.width) return;
-    if(this.blockRight() || this.blockLeft()) return;
-    if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.blockBellow())) {
+    if(this.isBlockRight() || this.isBlockLeft()) return;
+    if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.isBlockBellow())) {
       this.isFalling = false;
       return;
     };
@@ -70,19 +70,19 @@ export class Board {
     this.updateBlock(this.pos, this.block.matrix);
   }
 
-  blockBellow() {
+  isBlockBellow() {
     const blockList = ["O","T","X"];
     return Array.from({ length: this.block.width }).some((_,idx) => 
       blockList.includes(this.grid[this.pos.y+this.block.height][this.pos.x+idx]))
   }
 
-  blockRight() {
+  isBlockRight() {
     const blockList = ["O","T","X"];
     return Array.from({ length: this.block.height }).some((_,idx) =>
       blockList.includes(this.grid[this.pos.y+idx][this.block.matrixWidth+this.pos.x]))
   }
 
-  blockLeft() {
+  isBlockLeft() {
     const blockList = ["O","X"];
     return Array.from({ length: this.block.height }).some((_, idx) => 
       blockList.includes(this.grid[this.pos.y+idx][this.pos.x]));
