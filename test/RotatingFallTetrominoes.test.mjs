@@ -16,7 +16,8 @@ describe("A falling tetromino can be rotated", () => {
     test.skip("A falling tetromino can be rotated to the right in the board", () => {
         board.drop(tetromino);
         board.updateBlock(tetromino.rotateRight());
-        expect(board.toString()).to.be(
+        console.log(board.toString());
+        expect(board.toString()).to.equalShape(
         `.....T....
          .....TT...
          .....T....
@@ -27,7 +28,7 @@ describe("A falling tetromino can be rotated", () => {
     test.skip("A falling tetromino can be rotated to the left in the board", () => {
         board.drop(tetromino);
         board.updateBlock(tetromino.rotateLeft());
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `.....T....
          ....TT....
          .....T....
@@ -51,7 +52,7 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         board.drop(tetromino);
         repeatMove(() => board.tryMove(tetromino.moveLeft()));
         board.updateBlock(tetromino.rotateRight());
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `T.........
          TT........
          T.........
@@ -64,7 +65,7 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         board.drop(tetromino);
         repeatMove(() => board.tryMove(tetromino.moveRight()));
         board.updateBlock(tetromino.rotateLeft());
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `.........T
          ........TT
          .........T
@@ -78,7 +79,7 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         repeatMove(() => board.tryMove(tetromino.moveDown()),3);
 
         board.updateBlock(tetromino.rotateRight());
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `..........
          ..........
          ....T.....
@@ -98,7 +99,7 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         repeatMove(() => board.tryMove(tetromino.moveLeft()));
         board.updateBlock(tetromino.rotateRight());
         
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `..........
          ..........
          .TTT......
@@ -116,7 +117,7 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         board.updateBlock(tetromino.rotateLeft());
         repeatMove(() => board.tryMove(tetromino.moveRight()));
         board.updateBlock(tetromino.rotateLeft());
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `..........
          ..........
          ......TTT.
@@ -133,7 +134,7 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         board.tryMove(tetromino.moveDown());
         board.tryMove(tetromino.moveDown());
         board.updateBlock(tetromino.rotateRight());
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `....T.....
          ....TT....
          ....T.....
@@ -171,7 +172,7 @@ describe("It cannot be rotated when there is no room to rotate", () => {
         board.tryMove(board.moveDown());
         board.updateBlock(tetromino.rotateLeft())
         
-        expect(board.toString()).to.be(
+        expect(board.toString()).to.equalShape(
         `......
          ..T..
          OOTTOO
