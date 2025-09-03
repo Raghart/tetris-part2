@@ -29,9 +29,9 @@ export class Board {
       this.isFalling = false;
       return;
     };
-    this.updateBlock(this.block.matrix, this.pos, ".");
+    this.updateBlock(this.block, this.pos, ".");
     this.pos.y = nextRow;
-    this.updateBlock(this.block.matrix);
+    this.updateBlock(this.block);
   }
 
   hasFalling() { return this.isFalling; }
@@ -40,7 +40,7 @@ export class Board {
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") { 
-          this.grid[position.y + row][position.x + col] = fillStr ?? block[row][col]; 
+          this.grid[position.y + row][position.x + col] = fillStr ?? block.matrix[row][col]; 
         }
       }
   }}
@@ -51,7 +51,7 @@ export class Board {
     this.isFalling = true;
     this.pos.y = 0;
     this.pos.x = Math.floor((this.grid[0].length - this.block.matrixWidth)/2);
-    this.updateBlock(this.block.matrix);
+    this.updateBlock(this.block);
   }
 
   tryMove(move) {
@@ -64,10 +64,10 @@ export class Board {
       this.isFalling = false;
       return;
     };
-    this.updateBlock(this.block.matrix, this.pos, ".");
+    this.updateBlock(this.block, this.pos, ".");
     this.pos.y += dy;
     this.pos.x += dx;
-    this.updateBlock(this.block.matrix);
+    this.updateBlock(this.block);
   }
 
   isBlockBellow() {
