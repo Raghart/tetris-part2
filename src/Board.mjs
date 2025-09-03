@@ -56,12 +56,17 @@ export class Board {
 
   tryMove(move) {
     const { dx, dy } = move;
-    if (this.block.width === 3 && this.pos.x + dx < 0) return;
+    const blockList = ["O","T","X"];
+    const isHittingLeft = Array.from({ length: this.block.height }).some((_,row) => 
+      blockList.includes(this.block.matrix[row][0]) && this.pos.x < 0);
+    const isHittingRight = Array.from({ length: this.block.width }).some((_,row) =>
+      blockList.includes(this.block.matrix[row][this.block.matrix[row].length-1] && this.pos.x + dx + this.block.matrix[row].length > this.width )
+    )
+    if (this.block.width === 3 && dx < 0 && this.pos.x + dx < 0) return;
     if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
     if (this.pos.x + this.block.matrixWidth + dx > this.width) return;
-    if(this.blockRight()) return;
-    if (this.blockLeft()) return;
-    if (this.pos.y + dy + this.block.height > this.height || dy > 0 && this.blockBellow()) {
+    if(this.blockRight() || this.blockLeft()) return;
+    if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.blockBellow())) {
       this.isFalling = false;
       return;
     };
