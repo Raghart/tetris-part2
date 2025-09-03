@@ -3,7 +3,7 @@ import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 import { expect } from "chai";
 
-const repeatMove = (moveDirection, times = 10) => {
+export const repeatMove = (moveDirection, times = 10) => {
     for (let i=0; i < times; i++) {
         moveDirection();
     }
@@ -33,7 +33,6 @@ describe("Moving Falling Tetrominoes", () => {
 
     test("a falling tetromino can be moved right", () => {
         board.drop(tetromino);
-        console.log(board.toString())
         board.tryMove(tetromino.moveRight());
         expect(board.toString()).to.equalShape(
         `.....T....
@@ -116,13 +115,10 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
 
     test("It can't be moved down through other blocks (will stop falling)", () => {
         repeatMove(() => board.tryMove(firstTetromino.moveDown()));
-        console.log(board.toString());
         
         board.drop(secondTetromino)
-        console.log(board.toString());
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
-        console.log(board.toString());
-
+        
         expect(board.toString()).to.equalShape(
         `....OO....
          ....OO....
@@ -132,23 +128,16 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test("It can't be moved left through other blocks", () => {
-        console.log(board.toString());
         repeatMove(() => board.tryMove(firstTetromino.moveLeft()));
-        console.log(board.toString());
         repeatMove(() => board.tryMove(firstTetromino.moveDown()));
-        console.log(board.toString());
         
         board.drop(secondTetromino);
-        console.log(board.toString());
         repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
-        console.log(board.toString());
-
+        
         board.drop(thirdTetromino)
-        console.log(board.toString());
         repeatMove(() => board.tryMove(thirdTetromino.moveLeft()));
-        console.log(board.toString());
-
+        
         expect(board.toString()).to.equalShape(
         `OOOO......
          OOOO......
