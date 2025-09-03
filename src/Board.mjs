@@ -46,13 +46,14 @@ export class Board {
 
     this.pos.x += move.dx;
     this.pos.y += move.dy;
+    
     for (let row=0; row < block.matrix.length; row++) {
       for (let col=0; col < block.matrix[row].length; col++) {
-      if (block.matrix[row][col] !== ".") { 
-        this.grid[this.pos.y + row][this.pos.x + col] = block.matrix[row][col]; 
-      }
+        if (block.matrix[row][col] !== ".") { 
+          this.grid[this.pos.y + row][this.pos.x + col] = block.matrix[row][col]; 
+        }
     }}  
-    }
+  }
 
   drop(block) {
     if (this.isFalling) throw new Error("already falling");
