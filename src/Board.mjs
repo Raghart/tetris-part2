@@ -78,6 +78,10 @@ export class Board {
     this.updateBlock(this.block, move);
   }
 
+  tryRotate(tetromino) {
+    this.updateBlock(tetromino);
+  }
+
   isBlockBellow() {
     const blockList = ["O","T","X"];
     return Array.from({ length: this.block.width }).some((_,idx) => 

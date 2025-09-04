@@ -10,9 +10,9 @@ export class Tetromino {
      TTT
      ...`));
 
-    rotateRight() { return this.RotatingShape.rotateRight(); };
+    rotateRight() { return new Tetromino(this.RotatingShape.rotateRight()); };
 
-    rotateLeft() { return this.RotatingShape.rotateLeft(); };
+    rotateLeft() { return new Tetromino(this.RotatingShape.rotateLeft()); };
 
     toString() { return this.RotatingShape.toString(); }
 
