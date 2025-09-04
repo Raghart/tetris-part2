@@ -79,6 +79,16 @@ export class Board {
   }
 
   tryRotate(tetromino) {
+    if (this.pos.x < 0) {
+      this.tryMove(tetromino.moveRight());
+      this.updateBlock(tetromino);
+      this.tryMove(tetromino.moveLeft());
+      return;
+    };
+
+    if (this.pos.x >= this.width) {
+      return;
+    }
     this.updateBlock(tetromino);
   }
 
