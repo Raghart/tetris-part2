@@ -37,7 +37,7 @@ describe("A falling tetromino can be rotated", () => {
         );
     });
 });
-/*
+
 describe("A falling tetromino can Wall Kick to be able to rotate if possible", () => {
     let board;
     let tetromino;
@@ -51,12 +51,18 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
 
     test.skip("A falling tetromino can wall kick if it wants to rotate in the left wall", () => {
         board.drop(tetromino);
-        repeatMove(() => board.tryMove(tetromino.moveLeft()));
+        console.log(board.toString());
         board.updateBlock(tetromino.rotateRight());
+        console.log(board.toString());
+        repeatMove(() => board.tryMove(tetromino.moveLeft()));
+        console.log(board.toString());
+        board.updateBlock(tetromino.rotateRight());
+        console.log(board.toString());
+
         expect(board.toString()).to.equalShape(
-        `T.........
-         TT........
-         T.........
+        `..........
+         TTT.......
+         .T........
          ..........
          ..........`
         );
@@ -67,9 +73,9 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         repeatMove(() => board.tryMove(tetromino.moveRight()));
         board.updateBlock(tetromino.rotateLeft());
         expect(board.toString()).to.equalShape(
-        `.........T
-         ........TT
-         .........T
+        `..........
+         .......TTT
+         ........T.
          ..........
          ..........`
         );
@@ -144,7 +150,6 @@ describe("A falling tetromino can Wall Kick to be able to rotate if possible", (
         );
     });
 });
-*/
 /*
 describe("It cannot be rotated when there is no room to rotate", () => {
     let board;
