@@ -35,10 +35,10 @@ export class Board {
 
   hasFalling() { return this.isFalling; }
 
-  updateBlock(block, move) {
-    for (let row=0; row < block.matrix.length; row++) {
-      for (let col=0; col < block.matrix[row].length; col++) { 
-        if (block.matrix[row][col] !== ".") { 
+  updateBlock(block, move = { dy: 0, dx: 0 }) {
+    for (let row=0; row < this.block.matrix.length; row++) {
+      for (let col=0; col < this.block.matrix[row].length; col++) { 
+        if (this.block.matrix[row][col] !== ".") { 
           this.grid[this.pos.y + row][this.pos.x + col] = "."; 
         }
       }
@@ -46,7 +46,8 @@ export class Board {
 
     this.pos.x += move.dx;
     this.pos.y += move.dy;
-    
+    this.block = block;
+
     for (let row=0; row < block.matrix.length; row++) {
       for (let col=0; col < block.matrix[row].length; col++) {
         if (block.matrix[row][col] !== ".") { 
@@ -61,7 +62,7 @@ export class Board {
     this.isFalling = true;
     this.pos.y = 0;
     this.pos.x = Math.floor((this.grid[0].length - this.block.matrixWidth)/2);
-    this.updateBlock(this.block, { dx: 0, dy: 0 });
+    this.updateBlock(this.block);
   }
 
   tryMove(move) {
