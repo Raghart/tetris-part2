@@ -36,16 +36,6 @@ export class Board {
   hasFalling() { return this.isFalling; }
 
   updateBlock(block, move = { dy: 0, dx: 0 }) {
-    if (block === "mamut") {
-      if (this.block.width === 3 && dx < 0 && this.pos.x + dx < 0) return;
-      if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
-      if (this.pos.x + this.block.matrixWidth + dx > this.width) return;
-      if(this.isBlockRight() || this.isBlockLeft()) return;
-      if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.isBlockBellow())) {
-        this.isFalling = false;
-        return;
-      };
-    }
     for (let row=0; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) { 
         if (this.block.matrix[row][col] !== ".") { 
