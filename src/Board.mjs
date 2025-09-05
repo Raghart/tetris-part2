@@ -69,7 +69,9 @@ export class Board {
     const { dx, dy } = move;
     if (this.block.width === 3 && dx < 0 && this.pos.x + dx < 0) return;
     if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
-    if (this.pos.x + this.block.matrixWidth + dx > this.width) return;
+    if (this.block.width === 3 && dx > 0 && this.pos.x + dx + this.block.width > this.width) return;
+    if (this.block.width === 2 && dx > 0 && this.pos.x + dx + this.block.width >= this.width) return;
+    if (this.pos.x + this.block.width + dx > this.width) return;
     if(this.isBlockRight() || this.isBlockLeft()) return;
     if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.isBlockBellow())) {
       this.isFalling = false;
@@ -79,6 +81,7 @@ export class Board {
   }
 
   tryRotate(tetromino) {
+    console.log(this.pos.x)
     if (this.pos.x < 0) {
       this.tryMove(tetromino.moveRight());
       this.updateBlock(tetromino);
@@ -87,6 +90,9 @@ export class Board {
     };
 
     if (this.pos.x >= this.width) {
+      this.tryMove(tetromino.moveLeft());
+      this.updateBlock(tetromino);
+      this.tryMove(tetromino.moveRight());
       return;
     }
     this.updateBlock(tetromino);

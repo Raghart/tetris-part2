@@ -29,6 +29,8 @@ export class Tetromino {
     };
     get matrixWidth() { return this.RotatingShape.matrix[0].length };
 
+    get offsetY () { return this.RotatingShape.matrix.findIndex(row => row.some(cell => cell === ".")); };
+
     static I_SHAPE = new Tetromino(RotatingShape.fromString(
     `.....
      .....

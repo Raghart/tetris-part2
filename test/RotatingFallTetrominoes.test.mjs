@@ -64,12 +64,13 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         );
     });
 
-    test.skip("A falling tetromino can wall kick if it wants to rotate in the right wall", () => {
+    test("A falling tetromino can wall kick if it wants to rotate in the right wall", () => {
         board.drop(tetromino);
-        board.tryRotate(tetromino.rotateLeft());
+        board.tryRotate(tetromino = tetromino.rotateLeft());
+        console.log(board.toString());
         repeatMove(() => board.tryMove(tetromino.moveRight()));
-        
-        board.tryRotate(tetromino.rotateLeft());
+        console.log(board.toString());
+        board.tryRotate(tetromino = tetromino.rotateLeft());
         expect(board.toString()).to.equalShape(
         `..........
          .......TTT
