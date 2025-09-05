@@ -98,6 +98,15 @@ export class Board {
     this.updateBlock(tetromino);
   }
 
+  isSpaceLeft() {
+    for(let col; col < this.block.height; col++) {
+      if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX] !== ".") {
+        return true;
+      }
+      return false;
+    }
+  };
+
   isBlockBellow() {
     const blockList = ["O","T","X"];
     return Array.from({ length: this.block.width }).some((_,idx) => 
