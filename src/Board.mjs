@@ -99,13 +99,22 @@ export class Board {
   }
 
   isSpaceLeft() {
-    for(let col; col < this.block.height; col++) {
+    for(let col = 0; col < this.block.height; col++) {
       if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX] !== ".") {
         return true;
       }
       return false;
     }
   };
+
+  isRightFull() {
+    for (let col = 0; col < this.block.height ; col++ ) {
+      if (this.grid[this.pos.y+this.block.offsetY+col][this.pos.x + this.block.offsetX + this.block.width] !== ".") {
+        return true;
+      }
+      return false;
+    }
+  }
 
   isBlockBellow() {
     const blockList = ["O","T","X"];
