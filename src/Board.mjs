@@ -77,20 +77,25 @@ export class Board {
   }
 
   tryRotate(tetromino) {
-    console.log(this.pos.x)
-    if (this.pos.x < 0) {
+    if (this.isLeftFull()) {
       this.tryMove(tetromino.moveRight());
       this.updateBlock(tetromino);
       this.tryMove(tetromino.moveLeft());
       return;
     };
 
-    if (this.pos.x >= this.width) {
+    if (this.isRightFull()) {
       this.tryMove(tetromino.moveLeft());
       this.updateBlock(tetromino);
       this.tryMove(tetromino.moveRight());
       return;
     }
+
+    if (this.isBellowFull()) {
+      this.tryMove(tetromino.moveUp());
+      this.updateBlock(tetromino);
+      this.tryMove(tetromino.moveDown());
+    };
     this.updateBlock(tetromino);
   }
 

@@ -65,4 +65,6 @@ export class Tetromino {
     moveRight() { return { dx: 1, dy: 0 }; };
 
     moveDown() { return { dx: 0, dy: 1 }; };
+
+    moveUp() { return { dx: 0, dy: -1 } };
 };
