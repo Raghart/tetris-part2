@@ -67,13 +67,12 @@ export class Board {
 
   tryMove(move) {
     const { dx, dy } = move;
-    if (this.isLeftFull()) return;
-    if (this.block.width === 3 && dx < 0 && this.pos.x + dx < 0) return;
-    if(this.isBlockRight() || this.isBlockLeft()) return;
-    if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.isBlockBellow())) {
+    if (dx < 0 && this.isLeftFull()) return;
+    if (dx > 0 && this.isRightFull()) return;
+    if (dy > 0 && this.isBellowFull()) {
       this.isFalling = false;
       return;
-    };
+    }
     this.updateBlock(this.block, move);
   }
 
@@ -97,7 +96,7 @@ export class Board {
 
   isLeftFull() {
     for(let col = 0; col < this.block.height; col++) {
-      if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX] !== ".") {
+      if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX - 1] !== ".") {
         return true;
       }
     }
@@ -114,8 +113,8 @@ export class Board {
   }
 
   isBellowFull() {
-    for(let row; row < this.block.width; row++) {
-      if (this.grid[this.pos.y+this.block.offsetY+this.block.height][this.pos.x+this.block.offsetX+row] !== ".") {
+    for(let row = 0; row < this.block.width; row++) {
+      if (this.grid[this.pos.y+this.block.offsetY+this.block.height]?.[this.pos.x+this.block.offsetX+row] !== ".") {
         return true;
       }
     }
