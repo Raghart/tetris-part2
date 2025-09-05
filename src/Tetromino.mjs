@@ -31,6 +31,16 @@ export class Tetromino {
 
     get offsetY () { return this.RotatingShape.matrix.findIndex(row => row.some(cell => cell === ".")); };
 
+    get offsetX () {
+        for(let col=0; col < this.RotatingShape.matrix.length; col++) {
+            let hasBlock = false;
+            for (let row=0; row < this.RotatingShape[0].matrix.length; row++) {
+                if (this.RotatingShape.matrix[row][col] !== ".") { hasBlock = true; break; }
+            }
+            if (hasBlock) return col;
+        }
+     }
+
     static I_SHAPE = new Tetromino(RotatingShape.fromString(
     `.....
      .....
