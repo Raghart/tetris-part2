@@ -117,8 +117,10 @@ export class Board {
   }
 
   isBellowFull() {
-    for(let row; row < this.block.width ;row++) {
-      
+    for(let row; row < this.block.width; row++) {
+      if (this.grid[this.pos.y+this.block.offsetY+this.block.height][this.pos.x+this.block.offsetX+row] !== ".") {
+        return true;
+      }
     }
     return false;
   }
