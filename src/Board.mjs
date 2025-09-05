@@ -127,11 +127,5 @@ export class Board {
       blockList.includes(this.grid[this.pos.y+this.block.height][this.pos.x+idx]))
   }
 
-  isBlockLeft() {
-    const blockList = ["O","X"];
-    return Array.from({ length: this.block.height }).some((_, idx) => 
-      blockList.includes(this.grid[this.pos.y+idx][this.pos.x]));
-  }
-
   toString() { return this.grid.map(row => row.join("") + "\n").join(""); }
 }
