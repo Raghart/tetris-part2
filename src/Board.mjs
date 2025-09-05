@@ -78,6 +78,7 @@ export class Board {
 
   tryRotate(tetromino) {
     if (this.isLeftFull()) {
+      if (this.isRightFull()) return;
       this.tryMove(tetromino.moveRight());
       this.updateBlock(tetromino);
       this.tryMove(tetromino.moveLeft());
@@ -85,6 +86,7 @@ export class Board {
     };
 
     if (this.isRightFull()) {
+      if (this.isLeftFull()) return;
       this.tryMove(tetromino.moveLeft());
       this.updateBlock(tetromino);
       this.tryMove(tetromino.moveRight());
