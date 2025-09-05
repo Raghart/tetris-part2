@@ -67,11 +67,8 @@ export class Board {
 
   tryMove(move) {
     const { dx, dy } = move;
+    if (this.isLeftFull()) return;
     if (this.block.width === 3 && dx < 0 && this.pos.x + dx < 0) return;
-    if (this.block.width === 2 && dx < 0 && this.pos.x + dx + this.block.width < 1 ) return;
-    if (this.block.width === 3 && dx > 0 && this.pos.x + dx + this.block.width > this.width) return;
-    if (this.block.width === 2 && dx > 0 && this.pos.x + dx + this.block.width >= this.width) return;
-    if (this.pos.x + this.block.width + dx > this.width) return;
     if(this.isBlockRight() || this.isBlockLeft()) return;
     if (this.pos.y + dy + this.block.height > this.height || (dy > 0 && this.isBlockBellow())) {
       this.isFalling = false;
@@ -98,7 +95,7 @@ export class Board {
     this.updateBlock(tetromino);
   }
 
-  isSpaceLeft() {
+  isLeftFull() {
     for(let col = 0; col < this.block.height; col++) {
       if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX] !== ".") {
         return true;

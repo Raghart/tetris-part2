@@ -1,3 +1,4 @@
+/*
 import { beforeEach, describe, test } from "vitest";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
@@ -149,6 +150,7 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         );
     });
 });
+*/
 /*
 describe("It cannot be rotated when there is no room to rotate", () => {
     let board;

@@ -34,8 +34,11 @@ export class Tetromino {
     get offsetX () {
         for(let col=0; col < this.RotatingShape.matrix.length; col++) {
             let hasBlock = false;
-            for (let row=0; row < this.RotatingShape[0].matrix.length; row++) {
-                if (this.RotatingShape.matrix[row][col] !== ".") { hasBlock = true; break; }
+            for (let row=0; row < this.RotatingShape.matrix[0].length; row++) {
+                if (this.RotatingShape.matrix[row][col] !== ".") { 
+                    hasBlock = true; 
+                    break; 
+                }
             }
             if (hasBlock) return col;
         }
