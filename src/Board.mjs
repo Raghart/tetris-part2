@@ -103,8 +103,8 @@ export class Board {
       if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX] !== ".") {
         return true;
       }
-      return false;
     }
+    return false;
   };
 
   isRightFull() {
@@ -112,8 +112,15 @@ export class Board {
       if (this.grid[this.pos.y+this.block.offsetY+col][this.pos.x + this.block.offsetX + this.block.width] !== ".") {
         return true;
       }
-      return false;
     }
+    return false;
+  }
+
+  isBellowFull() {
+    for(let row; row < this.block.width ;row++) {
+      
+    }
+    return false;
   }
 
   isBlockBellow() {
