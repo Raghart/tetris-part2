@@ -11,7 +11,7 @@ export class ARSRotation {
         this.position = (this.position + 1) % 4;
         this.matrix = this.rotateBehavior.rotate(this.position);
         return this;
-    };
+    }
 
     rotateLeft() {
         this.position = (this.position + 2) % 4;
