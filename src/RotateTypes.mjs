@@ -1,4 +1,8 @@
 export class TRotation {
+    constructor() {
+        this.position = 0;
+    }
+    rotateRight() {}
     rotate(position) { return TRotation.Shapes[position] };
     static Shapes = [[[".",".",".","."],["T","T","T","."],[".","T",".","."],[".",".",".","."]],
                      [[".","T",".","."],[".","T","T","."],[".","T",".","."],[".",".",".","."]],
@@ -7,7 +11,9 @@ export class TRotation {
             ]
 };
 export class IRotation {
-    static Shapes = [[[".",".",".","."],["T","T","T","."],[".","T",".","."],[".",".",".","."]],[[".","T",".","."],[".","T","T","."],[".","T",".","."],[".",".",".","."]],]
+    rotate(pos) { return IRotation.Shapes[pos]; }
+    static Shapes = [[[".",".",".","."],["I","I","I","I"],[".",".",".","."],[".",".",".","."]],
+                    [[".",".","I","."],[".",".","I","."],[".",".","I","."],[".",".","I","."]]]
 };
 
 export class NormalRotate {

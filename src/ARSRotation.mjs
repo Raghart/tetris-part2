@@ -1,8 +1,6 @@
 import { TRotation } from "./RotateTypes.mjs";
 
 export class ARSRotation {
-    position;
-
     constructor(matrix, rotateBehavior = new TRotation) {
         this.matrix = matrix;
         this.rotateBehavior = rotateBehavior;
