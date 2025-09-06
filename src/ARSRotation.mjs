@@ -9,13 +9,12 @@ export class ARSRotation {
 
     rotateRight() {
         this.position = (this.position + 1) % this.rotateBehavior.totalShapes;
-        return new ARSRotation(this.rotateBehavior.rotate(this.position), this.rotateBehavior);
+        return new ARSRotation(this.matrix = this.rotateBehavior.rotate(this.position), this.rotateBehavior);
     }
 
     rotateLeft() {
         this.position = (this.position + 2) % this.rotateBehavior.totalShapes;
-        this.matrix = this.rotateBehavior.rotate(this.position);
-        return this;
+        return new ARSRotation(this.matrix = this.rotateBehavior.rotate(this.position), this.rotateBehavior);
     }
     
     static T_SHAPE = new ARSRotation(TRotation.Shapes[0], new TRotation);

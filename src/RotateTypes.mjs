@@ -24,6 +24,13 @@ export class IRotation {
                     [[".",".","I","."],[".",".","I","."],[".",".","I","."],[".",".","I","."]]]
 };
 
+export class ORotation {
+    constructor() {
+    }
+    rotate(pos) { return ORotation.Shapes[0] }
+    static Shapes = [[[".",".",".","."],[".","O","O","."],[".","O","O","."],[".",".",".","."],]];
+}
+
 export class NormalRotate {
     rotateRight(matrix) {
         const rotatedMatrix = [];
