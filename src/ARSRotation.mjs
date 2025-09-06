@@ -8,7 +8,7 @@ export class ARSRotation {
     };
 
     rotateRight() {
-        this.position = (this.position + 1) % 4;
+        this.position = (this.position + 1) % this.rotateBehavior.totalShapes;
         this.matrix = this.rotateBehavior.rotate(this.position);
         return this;
     }
@@ -25,13 +25,6 @@ export class ARSRotation {
         const rows = str.split("\n").map(row => row.trim().split(""));
         return new ARSRotation(rows, rotateBehavior);
     };
-
-    static TEST = [
-            [".",".",".","."],
-            ["T","T","T","."],
-            [".","T",".","."],
-            [".",".",".","."],
-    ]
 
     static I_SHAPE = [
         [

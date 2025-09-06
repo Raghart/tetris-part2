@@ -2,10 +2,11 @@ export class TRotation {
     constructor(position = 0) {
         this.position = position;
         this.matrix = TRotation.Shapes[position];
+        this.totalShapes = TRotation.Shapes.length;
     }
     rotateRight() {
-        this.position = (this.position + 1) % 4;
         this.matrix = TRotation.Shapes[this.position]
+        console.log(this.matrix)
         return this.matrix;
     }
     rotate(position) { return TRotation.Shapes[position] };
