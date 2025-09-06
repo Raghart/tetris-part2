@@ -135,7 +135,7 @@ describe("Rotating a T Tetromino using ARS Rotation System", () => {
     )
   });
 
-  test.skip("the T shape can rotate to the right", () => {
+  test("the T shape can rotate to the right", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
       `.T..
        .TT.
