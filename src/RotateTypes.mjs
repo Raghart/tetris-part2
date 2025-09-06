@@ -4,11 +4,7 @@ export class TRotation {
         this.matrix = TRotation.Shapes[position];
         this.totalShapes = TRotation.Shapes.length;
     }
-    rotateRight() {
-        this.matrix = TRotation.Shapes[this.position]
-        console.log(this.matrix)
-        return this.matrix;
-    }
+
     rotate(position) { return TRotation.Shapes[position] };
     static Shapes = [[[".",".",".","."],["T","T","T","."],[".","T",".","."],[".",".",".","."]],
                      [[".","T",".","."],[".","T","T","."],[".","T",".","."],[".",".",".","."]],
@@ -17,6 +13,12 @@ export class TRotation {
             ]
 };
 export class IRotation {
+    constructor(position = 0) {
+        this.position = position;
+        this.matrix = IRotate.Shapes[position];
+        this.totalShapes = IRotate.Shapes.length;
+    }
+    
     rotate(pos) { return IRotation.Shapes[pos]; }
     static Shapes = [[[".",".",".","."],["I","I","I","I"],[".",".",".","."],[".",".",".","."]],
                     [[".",".","I","."],[".",".","I","."],[".",".","I","."],[".",".","I","."]]]

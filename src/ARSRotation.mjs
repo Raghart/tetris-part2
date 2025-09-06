@@ -14,7 +14,7 @@ export class ARSRotation {
     }
 
     rotateLeft() {
-        this.position = (this.position + 2) % 4;
+        this.position = (this.position + 2) % this.rotateBehavior.totalShapes;
         this.matrix = this.rotateBehavior.rotate(this.position);
         return this;
     }
@@ -34,8 +34,6 @@ export class ARSRotation {
             [".",".",".","."],
         ], 
         [
-            [".",".","I","."],
-            [".",".","I","."],
             [".",".","I","."],
             [".",".","I","."],
         ],
