@@ -1,4 +1,5 @@
-import { IRotate, ORotate } from "./RotateTypes.mjs";
+import { ARSRotation } from "./ARSRotation.mjs";
+import { IRotate, IRotation, ORotate, ORotation, TRotation } from "./RotateTypes.mjs";
 import { RotatingShape } from "./RotatingShape.mjs"
 
 export class Tetromino {
@@ -43,6 +44,11 @@ export class Tetromino {
             if (hasBlock) return col;
         }
      }
+    static T_SHAPE_TEST = new Tetromino(new ARSRotation(TRotation.Shapes[0]));
+
+    static I_SHAPE_TEST = new Tetromino(new ARSRotation(IRotation.Shapes[0], new IRotation));
+
+    static O_SHAPE_TEST = new Tetromino(new ARSRotation(ORotation.Shapes[0], new ORotation));
 
     static I_SHAPE = new Tetromino(RotatingShape.fromString(
     `.....

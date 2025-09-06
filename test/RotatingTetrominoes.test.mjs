@@ -123,7 +123,7 @@ describe("Rotating a T Tetromino using ARS Rotation System", () => {
   let shape;
   
   beforeEach(() => {
-    shape = ARSRotation.T_SHAPE;
+    shape = Tetromino.T_SHAPE_TEST;
   });
 
   test("initial orientation", () => {
@@ -162,7 +162,7 @@ describe("Rotating a I Tetromino using ARS Rotation System", () => {
   let shape;
   
   beforeEach(() => {
-    shape = ARSRotation.I_SHAPE;
+    shape = Tetromino.I_SHAPE_TEST;
   });
 
   test("initial orientation", () => {
@@ -201,7 +201,7 @@ describe("Rotating a O Tetromino using ARS Rotation System", () => {
   let shape;
   
   beforeEach(() => {
-    shape = ARSRotation.O_SHAPE;
+    shape = Tetromino.O_SHAPE_TEST;
   });
 
   test("initial orientation", () => {
@@ -213,7 +213,7 @@ describe("Rotating a O Tetromino using ARS Rotation System", () => {
     )
   });
 
-  test("the O shape can rotate to the right", () => {
+  test("the O shape can't rotate to the right", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
       `....
        .OO.
@@ -222,7 +222,7 @@ describe("Rotating a O Tetromino using ARS Rotation System", () => {
     )
   });
 
-  test("the O shape can rotate to the left", () => {
+  test("the O shape can't rotate to the left", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
       `....
        .OO.

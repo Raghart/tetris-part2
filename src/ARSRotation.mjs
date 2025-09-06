@@ -16,8 +16,6 @@ export class ARSRotation {
         this.position = (this.position + 2) % this.rotateBehavior.totalShapes;
         return new ARSRotation(this.matrix = this.rotateBehavior.rotate(this.position), this.rotateBehavior);
     }
-    
-    static T_SHAPE = new ARSRotation(TRotation.Shapes[0], new TRotation);
 
     static I_SHAPE = new ARSRotation(IRotation.Shapes[0], new IRotation);
 
