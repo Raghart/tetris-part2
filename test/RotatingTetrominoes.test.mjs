@@ -1,6 +1,7 @@
-import { describe, test } from "vitest";
+import { beforeEach, describe, test } from "vitest";
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { ARSRotation } from "../src/ARSRotation.mjs";
 
 function distinctOrientations(shape) {
   const distinct = new Set();
@@ -115,5 +116,79 @@ describe("The O shape", () => {
 
   test("has 1 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(1);
+  });
+});
+
+describe("Rotating a T Tetromino using ARS Rotation System", () => {
+  let shape;
+  
+  beforeEach(() => {
+    shape = ARSRotation.T_SHAPE;
+  });
+
+  test("initial orientation", () => {
+    expect(shape.toString()).to.equalShape(
+      `....
+       TTT.
+       .T..
+       ....`
+    )
+  });
+
+  test.skip("the T shape can rotate to the right", () => {
+    expect(shape.rotateRight().toString()).to.equalShape(
+      `.T..
+       .TT.
+       .T..
+       ....`
+    )
+  });
+
+  test.skip("the T shape can rotate to the left", () => {
+    expect(shape.rotateLeft().toString()).to.equalShape(
+      `.T..
+       TT..
+       .T..
+       ....`
+    )
+  });
+
+  test.skip("has 4 distinct orientations", () => {
+    expect(distinctOrientations(shape).size).to.equal(4);
+  });
+});
+
+describe("Rotating a I Tetromino using ARS Rotation System", () => {
+  let shape;
+  
+  beforeEach(() => {
+    shape = ARSRotation.I_SHAPES[0];
+  });
+
+  test.skip("initial orientation", () => {
+    expect(shape.toString()).to.equalShape(
+      `....
+       IIII
+       ....
+       ....`
+    )
+  });
+
+  test.skip("the T shape can rotate to the right", () => {
+    expect(shape.rotateRight().toString()).to.equalShape(
+      `..I.
+       ..I.
+       ..I.
+       ..I.`
+    )
+  });
+
+  test.skip("the T shape can rotate to the left", () => {
+    expect(shape.rotateLeft().toString()).to.equalShape(
+      `..I.
+       ..I.
+       ..I.
+       ..I.`
+    )
   });
 });

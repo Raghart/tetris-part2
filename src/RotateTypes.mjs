@@ -1,3 +1,12 @@
+export class TRotation {
+    rotateRight () {
+        
+    }
+    static Shapes = [[[".",".",".","."],["T","T","T","."],[".","T",".","."],[".",".",".","."]],
+                     [[".","T",".","."],[".","T","T","."],[".","T",".","."],[".",".",".","."]]
+            ]
+};
+
 export class NormalRotate {
     rotateRight(matrix) {
         const rotatedMatrix = [];
