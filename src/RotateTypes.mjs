@@ -25,7 +25,10 @@ export class IRotation {
 };
 
 export class ORotation {
-    constructor() {
+    constructor(position = 0) {
+        this.position = position;
+        this.matrix = IRotation.Shapes[position];
+        this.totalShapes = IRotation.Shapes.length;
     }
     rotate(pos) { return ORotation.Shapes[0] }
     static Shapes = [[[".",".",".","."],[".","O","O","."],[".","O","O","."],[".",".",".","."],]];

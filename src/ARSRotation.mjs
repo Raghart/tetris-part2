@@ -27,12 +27,7 @@ export class ARSRotation {
     static I_SHAPE = new ARSRotation(IRotation.Shapes[0], new IRotation);
 
     static O_SHAPE = [
-        [
-            [".",".",".","."],
-            [".","O","O","."],
-            [".","O","O","."],
-            [".",".",".","."],
-        ]
+        
     ]
 
     toString() { return this.matrix.map(row => row.join("") + "\n").join(""); }
