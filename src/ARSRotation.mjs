@@ -11,16 +11,17 @@ export class ARSRotation {
 
     rotateRight() {
         this.position = (this.position + 1) % 4;
-        return new ARSRotation(this.rotateBehavior.rotateRight(this.position));
+        this.matrix = this.rotateBehavior.rotate(this.position);
+        return this;
     };
 
     rotateLeft() {
         this.position = (this.position + 2) % 4;
-        this.matrix = ARSRotation.T_SHAPES[this.position].matrix;
+        this.matrix = this.rotateBehavior.rotate(this.position);
         return this;
     }
     
-    static T_SHAPE = new ARSRotation(TRotation.Shapes[0], new TRotation);
+    static T_SHAPE = new ARSRotation(TRotation.Shapes[0]);
 
     static fromString(str, rotateBehavior) {
         const rows = str.split("\n").map(row => row.trim().split(""));

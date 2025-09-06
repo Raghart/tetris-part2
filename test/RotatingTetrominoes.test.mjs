@@ -144,7 +144,7 @@ describe("Rotating a T Tetromino using ARS Rotation System", () => {
     )
   });
 
-  test.skip("the T shape can rotate to the left", () => {
+  test("the T shape can rotate to the left", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
       `.T..
        TT..
@@ -153,7 +153,7 @@ describe("Rotating a T Tetromino using ARS Rotation System", () => {
     )
   });
 
-  test.skip("has 4 distinct orientations", () => {
+  test("has 4 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(4);
   });
 });
@@ -162,7 +162,7 @@ describe("Rotating a I Tetromino using ARS Rotation System", () => {
   let shape;
   
   beforeEach(() => {
-    shape = ARSRotation.I_SHAPES[0];
+    shape = ARSRotation.I_SHAPE;
   });
 
   test.skip("initial orientation", () => {
@@ -190,5 +190,9 @@ describe("Rotating a I Tetromino using ARS Rotation System", () => {
        ..I.
        ..I.`
     )
+  });
+
+  test.skip("has 4 distinct orientations", () => {
+    expect(distinctOrientations(shape).size).to.equal(2);
   });
 });
