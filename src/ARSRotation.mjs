@@ -1,4 +1,4 @@
-import { TRotation } from "./RotateTypes.mjs";
+import { IRotation, TRotation } from "./RotateTypes.mjs";
 
 export class ARSRotation {
     constructor(matrix, rotateBehavior = new TRotation) {
@@ -9,8 +9,7 @@ export class ARSRotation {
 
     rotateRight() {
         this.position = (this.position + 1) % this.rotateBehavior.totalShapes;
-        this.matrix = this.rotateBehavior.rotate(this.position);
-        return this;
+        return new ARSRotation(this.rotateBehavior.rotate(this.position), this.rotateBehavior);
     }
 
     rotateLeft() {
@@ -19,16 +18,14 @@ export class ARSRotation {
         return this;
     }
     
-    static T_SHAPE = new ARSRotation(TRotation.Shapes[0]);
+    static T_SHAPE = new ARSRotation(TRotation.Shapes[0], new TRotation);
 
     static fromString(str, rotateBehavior) {
         const rows = str.split("\n").map(row => row.trim().split(""));
         return new ARSRotation(rows, rotateBehavior);
     };
 
-    static I_SHAPE = [
-
-    ]
+    static I_SHAPE = new ARSRotation(IRotation.Shapes[0], new IRotation);
 
     static O_SHAPE = [
         [

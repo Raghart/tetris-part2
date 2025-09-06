@@ -15,10 +15,10 @@ export class TRotation {
 export class IRotation {
     constructor(position = 0) {
         this.position = position;
-        this.matrix = IRotate.Shapes[position];
-        this.totalShapes = IRotate.Shapes.length;
+        this.matrix = IRotation.Shapes[position];
+        this.totalShapes = IRotation.Shapes.length;
     }
-    
+
     rotate(pos) { return IRotation.Shapes[pos]; }
     static Shapes = [[[".",".",".","."],["I","I","I","I"],[".",".",".","."],[".",".",".","."]],
                     [[".",".","I","."],[".",".","I","."],[".",".","I","."],[".",".","I","."]]]
