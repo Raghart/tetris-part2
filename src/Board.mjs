@@ -36,10 +36,10 @@ export class Board {
   hasFalling() { return this.isFalling; }
 
   updateBlock(block, move = { dy: 0, dx: 0 }) {
-    for (let row=0; row < this.block.matrix.length; row++) {
+    for (let row=this.block.offsetY; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) { 
         if (this.block.matrix[row][col] !== ".") { 
-          this.grid[this.pos.y + row][this.pos.x + col] = "."; 
+          this.grid[this.pos.y + row - this.block.offsetY][this.pos.x + col] = "."; 
         }
       }
     } 
@@ -48,10 +48,10 @@ export class Board {
     this.pos.y += move.dy;
     this.block = block;
 
-    for (let row=0; row < block.matrix.length; row++) {
+    for (let row=this.block.offsetY; row < block.matrix.length; row++) {
       for (let col=0; col < block.matrix[row].length; col++) {
         if (block.matrix[row][col] !== ".") { 
-          this.grid[this.pos.y + row][this.pos.x + col] = block.matrix[row][col]; 
+          this.grid[this.pos.y + row - this.block.offsetY][this.pos.x + col] = block.matrix[row][col]; 
         }
     }}  
   }
@@ -103,7 +103,7 @@ export class Board {
 
   isLeftFull() {
     for(let col = 0; col < this.block.height; col++) {
-      if (this.grid[this.pos.y + this.block.offsetY + col][this.pos.x + this.block.offsetX - 1] !== ".") {
+      if (this.grid[this.pos.y + col][this.pos.x + this.block.offsetX - 1] !== ".") {
         return true;
       }
     }
@@ -112,7 +112,7 @@ export class Board {
 
   isRightFull() {
     for (let col = 0; col < this.block.height ; col++ ) {
-      if (this.grid[this.pos.y+this.block.offsetY+col][this.pos.x + this.block.offsetX + this.block.width] !== ".") {
+      if (this.grid[this.pos.y+col][this.pos.x + this.block.offsetX + this.block.width] !== ".") {
         return true;
       }
     }
@@ -121,7 +121,7 @@ export class Board {
 
   isBellowFull() {
     for(let row = 0; row < this.block.width; row++) {
-      if (this.grid[this.pos.y+this.block.offsetY+this.block.height]?.[this.pos.x+this.block.offsetX+row] !== ".") {
+      if (this.grid[this.pos.y+this.block.height]?.[this.pos.x+this.block.offsetX+row] !== ".") {
         return true;
       }
     }

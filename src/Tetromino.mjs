@@ -30,7 +30,7 @@ export class Tetromino {
     };
     get matrixWidth() { return this.RotatingShape.matrix[0].length };
 
-    get offsetY () { return this.RotatingShape.matrix.findIndex(row => row.some(cell => cell === ".")); };
+    get offsetY () { return this.RotatingShape.matrix.findIndex(row => !row.every(cell => cell === ".")); };
 
     get offsetX () {
         for(let col=0; col < this.RotatingShape.matrix.length; col++) {

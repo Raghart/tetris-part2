@@ -4,6 +4,10 @@ const trainingRoom = () => {
         [".",".",".",".",".",".",".",".",".",".",],
         [".",".",".",".",".",".",".",".",".",".",],
         [".",".",".",".",".",".",".",".",".",".",],
+        [".",".",".",".",".",".",".",".",".",".",],
+        [".",".",".",".",".",".",".",".",".",".",],
+        [".",".",".",".",".",".",".",".",".",".",],
+        [".",".",".",".",".",".",".",".",".",".",],
     ];
 
     const getOffset = (block) => {
@@ -31,64 +35,64 @@ const trainingRoom = () => {
     }
 
     const block1 = [
-        [".","T",".","."]
-        [".","T",".","."],
-        ["T","T","T","."],
         [".",".",".","."],
+        ["T","T","T","."],
+        [".","T",".","."],
+        [".",".",".","."]
     ];
 
     const block2 = [
         [".","T",".","."],
         [".","T","T","."],
         [".","T",".","."],
-        [".","T",".","."],
+        [".",".",".","."]
     ]
 
     const block3 = [
+        [".",".",".","."],
         [".","T",".","."],
-        [".","T",".","."],
-        [".","T",".","."],
-        [".","T",".","."],
+        ["T","T","T","."],
+        [".",".",".","."]
     ]
 
     const block4 = [
         [".","T",".","."],
+        ["T","T",".","."],
         [".","T",".","."],
-        [".","T",".","."],
-        [".","T",".","."],
+        [".",".",".","."],
     ]
     
     const testBlock = block4;
-    const posX = 8;
+    const posX = 5;
     const posY = 0;
     const blockWidth = getBlockWidth(testBlock);
     const blockHeight = testBlock.filter(row => !row.every(cell => cell === ".")).length;  
     const offsetY = testBlock.findIndex(row => !row.every(cell => cell === "."));
     const offsetX = getOffset(testBlock);
 
-    for (let col=0; col < testBlock.length; col++) {
+    for (let col=offsetY; col < testBlock.length; col++) {
         for (let row=0; row < testBlock[0].length; row++) {
             if (testBlock[col][row] !== ".") {
-                board[col + posY][row + posX] = testBlock[col][row];
+                board[col + posY - offsetY][row + posX] = testBlock[col][row];
             }
         }
     }
 
     for (let i=0; i < blockHeight; i++) {
-        if (board[offsetY+posY+i][offsetX + posX-1] === "." ) {
-            board[offsetY+posY+i][offsetX + posX-1] = "X"
+        if (board[posY+i][offsetX + posX-1] === "." ) {
+            board[posY+i][offsetX + posX-1] = "X"
         }
     };
 
     for (let i=0; i < blockHeight; i++) {
-        if (board[offsetY+posY+i][offsetX + posX + blockWidth] === ".") {
-            board[offsetY+posY+i][offsetX + posX + blockWidth] = "X";
+        if (board[posY+i][offsetX + posX + blockWidth] === ".") {
+            board[posY+i][offsetX + posX + blockWidth] = "X";
         };
     };
 
     for (let i=0; i < blockWidth; i++) {
-        if (board[offsetY+blockHeight][offsetX + posX + i] === ".") {
-            board[offsetY+blockHeight][offsetX + posX + i] = "X"
+        if (board[blockHeight][offsetX + posX + i] === ".") {
+            board[blockHeight][offsetX + posX + i] = "X"
         }
     }
 
