@@ -1,25 +1,25 @@
 import { IRotation, ORotation, TRotation } from "./RotateTypes.mjs";
 
 export class ARSRotation {
-    constructor(matrix, rotateBehavior = new TRotation) {
-        this.matrix = matrix;
+    constructor(matrix, rotateBehavior = new TRotation, position = 0) {
+        this.matrix = matrix.map(row => [...row]);
         this.rotateBehavior = rotateBehavior;
-        this.position = 0;
+        this.position = position;
     };
 
     rotateRight() {
-        this.position = (this.position + 1) % this.rotateBehavior.totalShapes;
-        return new ARSRotation(this.matrix = this.rotateBehavior.rotate(this.position), this.rotateBehavior);
+        const newPosition = (this.position + 1) % this.rotateBehavior.totalShapes;
+        const newMatrix = this.rotateBehavior.rotate(newPosition);
+        return new ARSRotation(newMatrix, this.rotateBehavior, newPosition);
     }
 
     rotateLeft() {
-        this.position = (this.position + 2) % this.rotateBehavior.totalShapes;
-        return new ARSRotation(this.matrix = this.rotateBehavior.rotate(this.position), this.rotateBehavior);
+        const newPosition = (this.position + 3) % this.rotateBehavior.totalShapes;
+        const newMatrix = this.rotateBehavior.rotate(newPosition);
+        return new ARSRotation(newMatrix, this.rotateBehavior, newPosition);
     }
 
     static I_SHAPE = new ARSRotation(IRotation.Shapes[0], new IRotation);
-
-    static O_SHAPE = new ARSRotation(ORotation.Shapes[0], new ORotation);
 
     static fromString(str, rotateBehavior) {
         const rows = str.split("\n").map(row => row.trim().split(""));
