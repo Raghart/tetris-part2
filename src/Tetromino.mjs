@@ -6,10 +6,6 @@ export class Tetromino {
     constructor(RotatingShape) {
         this.RotatingShape = RotatingShape;
     }
-    static T_SHAPE = new Tetromino(RotatingShape.fromString(
-    `.T.
-     TTT
-     ...`));
 
     rotateRight() { return new Tetromino(this.RotatingShape.rotateRight()); };
 
@@ -56,12 +52,6 @@ export class Tetromino {
      IIII.
      .....
      .....`, new IRotate
-    ));
-
-    static O_SHAPE = new Tetromino(RotatingShape.fromString(
-    `.OO
-     .OO
-     ...`, new ORotate
     ));
 
     static oneBlock(str) { return new Tetromino(RotatingShape.fromString(str, new ORotate)) };

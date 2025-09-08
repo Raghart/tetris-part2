@@ -149,7 +149,7 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         );
     });
 });
-/*
+
 describe("It cannot be rotated when there is no room to rotate", () => {
     let board;
     let tetromino;
@@ -158,9 +158,9 @@ describe("It cannot be rotated when there is no room to rotate", () => {
 
     beforeEach(() => {
         board = new Board(6,5);
-        tetromino = Tetromino.T_SHAPE;
-        secondTetromino = Tetromino.O_SHAPE;
-        thirdTetromino = Tetromino.O_SHAPE;
+        tetromino = Tetromino.T_SHAPE_TEST;
+        secondTetromino = Tetromino.O_SHAPE_TEST;
+        thirdTetromino = Tetromino.O_SHAPE_TEST;
     });
 
     test("A falling tetromino can't rotate if it doesn't have space to rotate", () => {
@@ -187,4 +187,3 @@ describe("It cannot be rotated when there is no room to rotate", () => {
         );
     });
 });
-*/
