@@ -42,7 +42,7 @@ export class Tetromino {
      }
     static T_SHAPE = new Tetromino(new ARSRotation(TRotation.Shapes[0]));
 
-    static I_SHAPE_TEST = new Tetromino(new ARSRotation(IRotation.Shapes[0], new IRotation));
+    static I_SHAPE = new Tetromino(new ARSRotation(IRotation.Shapes[0], new IRotation));
 
     static O_SHAPE = new Tetromino(new ARSRotation(ORotation.Shapes[0], new ORotation));
 
