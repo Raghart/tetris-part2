@@ -5,7 +5,7 @@ export class TRotation {
         this.totalShapes = TRotation.Shapes.length;
     }
 
-    rotate(position) { return TRotation.Shapes[position] };
+    rotate(position) { return TRotation.Shapes[position].map(row => [...row]) };
     static Shapes = [[[".",".",".","."],["T","T","T","."],[".","T",".","."],[".",".",".","."]],
                      [[".","T",".","."],[".","T","T","."],[".","T",".","."],[".",".",".","."]],
                      [[".",".",".","."],[".","T",".","."],["T","T","T","."],[".",".",".","."]],
@@ -19,7 +19,7 @@ export class IRotation {
         this.totalShapes = IRotation.Shapes.length;
     }
 
-    rotate(pos) { return IRotation.Shapes[pos]; }
+    rotate(pos) { return IRotation.Shapes[pos].map(row => [...row]); }
     static Shapes = [[[".",".",".","."],["I","I","I","I"],[".",".",".","."],[".",".",".","."]],
                     [[".",".","I","."],[".",".","I","."],[".",".","I","."],[".",".","I","."]]]
 };
@@ -27,10 +27,10 @@ export class IRotation {
 export class ORotation {
     constructor(position = 0) {
         this.position = position;
-        this.matrix = IRotation.Shapes[position];
-        this.totalShapes = IRotation.Shapes.length;
+        this.matrix = ORotation.Shapes[position];
+        this.totalShapes = ORotation.Shapes.length;
     }
-    rotate(pos) { return ORotation.Shapes[0] }
+    rotate(pos) { return ORotation.Shapes[0].map(row => [...row]) }
     static Shapes = [[[".",".",".","."],[".","O","O","."],[".","O","O","."],[".",".",".","."],]];
 }
 
