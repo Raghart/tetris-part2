@@ -1,11 +1,17 @@
 import { ARSRotation } from "./ARSRotation.mjs";
-import { IRotate, IRotation, ORotate, ORotation, TRotation } from "./RotateTypes.mjs";
+import { IRotation, ORotate, ORotation, TRotation } from "./RotateTypes.mjs";
 import { RotatingShape } from "./RotatingShape.mjs"
 
 export class Tetromino {
     constructor(RotatingShape) {
         this.RotatingShape = RotatingShape;
     }
+
+    static T_SHAPE = new Tetromino(new ARSRotation(TRotation.Shapes[0]));
+
+    static I_SHAPE = new Tetromino(new ARSRotation(IRotation.Shapes[0], new IRotation));
+
+    static O_SHAPE = new Tetromino(new ARSRotation(ORotation.Shapes[0], new ORotation));
 
     rotateRight() { return new Tetromino(this.RotatingShape.rotateRight()); };
 
@@ -40,11 +46,6 @@ export class Tetromino {
             if (hasBlock) return col;
         }
      }
-    static T_SHAPE = new Tetromino(new ARSRotation(TRotation.Shapes[0]));
-
-    static I_SHAPE = new Tetromino(new ARSRotation(IRotation.Shapes[0], new IRotation));
-
-    static O_SHAPE = new Tetromino(new ARSRotation(ORotation.Shapes[0], new ORotation));
 
     static oneBlock(str) { return new Tetromino(RotatingShape.fromString(str, new ORotate)) };
 
