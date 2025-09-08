@@ -19,7 +19,7 @@ describe("Rotating a T Tetromino using ARS Rotation System", () => {
   let shape;
   
   beforeEach(() => {
-    shape = Tetromino.T_SHAPE_TEST;
+    shape = Tetromino.T_SHAPE;
   });
 
   test("initial orientation", () => {
@@ -97,7 +97,7 @@ describe("Rotating a O Tetromino using ARS Rotation System", () => {
   let shape;
   
   beforeEach(() => {
-    shape = Tetromino.O_SHAPE_TEST;
+    shape = Tetromino.O_SHAPE;
   });
 
   test("initial orientation", () => {

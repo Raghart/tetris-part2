@@ -15,7 +15,7 @@ describe("Moving Falling Tetrominoes", () => {
 
     beforeEach(() => {
         board = new Board(10, 6);
-        tetromino = Tetromino.T_SHAPE_TEST;
+        tetromino = Tetromino.T_SHAPE;
     });
 
     test("a falling tetromino can be moved left", () => {
@@ -64,7 +64,7 @@ describe("Tetrominoes can't go beyond the board", () => {
 
     beforeEach(() => {
         board = new Board(10,4);
-        tetromino = Tetromino.T_SHAPE_TEST;
+        tetromino = Tetromino.T_SHAPE;
         board.drop(tetromino);
     });
 
@@ -107,9 +107,9 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
 
     beforeEach(() => {
         board = new Board(10, 4);
-        firstTetromino = Tetromino.O_SHAPE_TEST;
-        secondTetromino = Tetromino.O_SHAPE_TEST;
-        thirdTetromino = Tetromino.O_SHAPE_TEST;
+        firstTetromino = Tetromino.O_SHAPE;
+        secondTetromino = Tetromino.O_SHAPE;
+        thirdTetromino = Tetromino.O_SHAPE;
         board.drop(firstTetromino);
     });
 

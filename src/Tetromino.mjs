@@ -40,19 +40,11 @@ export class Tetromino {
             if (hasBlock) return col;
         }
      }
-    static T_SHAPE_TEST = new Tetromino(new ARSRotation(TRotation.Shapes[0]));
+    static T_SHAPE = new Tetromino(new ARSRotation(TRotation.Shapes[0]));
 
     static I_SHAPE_TEST = new Tetromino(new ARSRotation(IRotation.Shapes[0], new IRotation));
 
-    static O_SHAPE_TEST = new Tetromino(new ARSRotation(ORotation.Shapes[0], new ORotation));
-
-    static I_SHAPE = new Tetromino(RotatingShape.fromString(
-    `.....
-     .....
-     IIII.
-     .....
-     .....`, new IRotate
-    ));
+    static O_SHAPE = new Tetromino(new ARSRotation(ORotation.Shapes[0], new ORotation));
 
     static oneBlock(str) { return new Tetromino(RotatingShape.fromString(str, new ORotate)) };
 

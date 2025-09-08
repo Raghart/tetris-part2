@@ -10,7 +10,7 @@ describe("A falling tetromino can be rotated", () => {
 
     beforeEach(() => {
         board = new Board(10,4);
-        tetromino = Tetromino.T_SHAPE_TEST;
+        tetromino = Tetromino.T_SHAPE;
     });
 
     test("A falling tetromino can be rotated to the right in the board", () => {
@@ -44,8 +44,8 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
 
     beforeEach(() => {
         board = new Board(10,5);
-        tetromino = Tetromino.T_SHAPE_TEST;
-        secondTetromino = Tetromino.O_SHAPE_TEST;
+        tetromino = Tetromino.T_SHAPE;
+        secondTetromino = Tetromino.O_SHAPE;
     });
 
     test("A falling tetromino can wall kick if it wants to rotate in the left wall", () => {
@@ -158,9 +158,9 @@ describe("It cannot be rotated when there is no room to rotate", () => {
 
     beforeEach(() => {
         board = new Board(6,5);
-        tetromino = Tetromino.T_SHAPE_TEST;
-        secondTetromino = Tetromino.O_SHAPE_TEST;
-        thirdTetromino = Tetromino.O_SHAPE_TEST;
+        tetromino = Tetromino.T_SHAPE;
+        secondTetromino = Tetromino.O_SHAPE;
+        thirdTetromino = Tetromino.O_SHAPE;
     });
 
     test("A falling tetromino can't rotate if it doesn't have space to rotate", () => {
