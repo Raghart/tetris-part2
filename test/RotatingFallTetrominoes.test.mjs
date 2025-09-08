@@ -13,11 +13,9 @@ describe("A falling tetromino can be rotated", () => {
         tetromino = Tetromino.T_SHAPE_TEST;
     });
 
-    test.skip("A falling tetromino can be rotated to the right in the board", () => {
+    test("A falling tetromino can be rotated to the right in the board", () => {
         board.drop(tetromino);
-        console.log(board.toString());
         board.tryRotate(tetromino.rotateRight());
-        console.log(board.toString());
         expect(board.toString()).to.equalShape(
         `....T.....
          ....TT....
@@ -26,7 +24,7 @@ describe("A falling tetromino can be rotated", () => {
         );
     });
 
-    test.skip("A falling tetromino can be rotated to the left in the board", () => {
+    test("A falling tetromino can be rotated to the left in the board", () => {
         board.drop(tetromino);
         board.tryRotate(tetromino.rotateLeft());
         
@@ -50,7 +48,7 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         secondTetromino = Tetromino.O_SHAPE_TEST;
     });
 
-    test.skip("A falling tetromino can wall kick if it wants to rotate in the left wall", () => {
+    test("A falling tetromino can wall kick if it wants to rotate in the left wall", () => {
         board.drop(tetromino);
         board.tryRotate(tetromino = tetromino.rotateRight());
         repeatMove(() => board.tryMove(tetromino.moveLeft()));
@@ -65,22 +63,22 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         );
     });
 
-    test.skip("A falling tetromino can wall kick if it wants to rotate in the right wall", () => {
+    test("A falling tetromino can wall kick if it wants to rotate in the right wall", () => {
         board.drop(tetromino);
         board.tryRotate(tetromino = tetromino.rotateLeft());
         
         repeatMove(() => board.tryMove(tetromino.moveRight()));
         board.tryRotate(tetromino = tetromino.rotateLeft());
         expect(board.toString()).to.equalShape(
-        `..........
+        `........T.
          .......TTT
-         ........T.
+         ..........
          ..........
          ..........`
         );
     });
 
-    test.skip("A falling tetromino can wall kick if it wants to rotate at the bottom wall", () => {
+    test("A falling tetromino can wall kick if it wants to rotate at the bottom wall", () => {
         board.drop(tetromino);
         repeatMove(() => board.tryMove(tetromino.moveDown()),3);
         
@@ -94,7 +92,7 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         );
     });
 
-    test.skip("A falling tetromino can wall kick to a block if it wants to rotate in the left side", () => {
+    test("A falling tetromino can wall kick to a block if it wants to rotate in the left side", () => {
         board.drop(secondTetromino);
         repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
@@ -107,14 +105,14 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         
         expect(board.toString()).to.equalShape(
         `..........
-         ..........
+         ..T.......
          .TTT......
-         OOT.......
+         OO........
          OO........`
         );
     });
 
-    test.skip("A falling tetromino can wall kick to a block if it wants to rotate in the right side", () => {
+    test("A falling tetromino can wall kick to a block if it wants to rotate in the right side", () => {
         board.drop(secondTetromino);
         repeatMove(() => board.tryMove(secondTetromino.moveRight()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
@@ -127,14 +125,14 @@ describe("A falling tetromino can Wall Kick to rotate if possible", () => {
         board.tryRotate(tetromino = tetromino.rotateLeft());
         expect(board.toString()).to.equalShape(
         `..........
-         ..........
+         .......T..
          ......TTT.
-         .......TOO
+         ........OO
          ........OO`
         );
     });
 
-    test.skip("A falling tetromino can wall kick againts a block at the bottom", () => {
+    test("A falling tetromino can wall kick againts a block at the bottom", () => {
         board.drop(secondTetromino);
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
         

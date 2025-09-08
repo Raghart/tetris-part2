@@ -36,7 +36,7 @@ export class Board {
   hasFalling() { return this.isFalling; }
 
   updateBlock(block, move = { dy: 0, dx: 0 }) {
-    for (let row=0; row < this.block.matrix.length; row++) {
+    for (let row=this.block.offsetY; row < this.block.matrix.length; row++) {
       for (let col=0; col < this.block.matrix[row].length; col++) {
         if (this.block.matrix[row][col] !== ".") { 
           this.grid[this.pos.y + row - this.block.offsetY][this.pos.x + col] = "."; 
@@ -77,7 +77,6 @@ export class Board {
   }
 
   tryRotate(tetromino) {
-    /*
     if (this.isLeftFull()) {
       if (this.isRightFull()) return;
       this.tryMove(tetromino.moveRight());
@@ -99,7 +98,6 @@ export class Board {
       this.updateBlock(tetromino);
       this.tryMove(tetromino.moveDown());
     };
-    */
     this.updateBlock(tetromino);
   }
 

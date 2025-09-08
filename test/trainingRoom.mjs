@@ -77,8 +77,7 @@ const trainingRoom = () => {
             }
         }
     }
-
-    /*
+    
     for (let i=0; i < blockHeight; i++) {
         if (board[posY+i][offsetX + posX-1] === "." ) {
             board[posY+i][offsetX + posX-1] = "X"
@@ -94,23 +93,6 @@ const trainingRoom = () => {
     for (let i=0; i < blockWidth; i++) {
         if (board[blockHeight][offsetX + posX + i] === ".") {
             board[blockHeight][offsetX + posX + i] = "X"
-        }
-    }
-        */
-
-    for (let col=0; col < testBlock.length; col++) {
-        for (let row=0; row < testBlock[0].length; row++) {
-            if (testBlock[col][row] !== ".") {
-                board[col + posY - offsetY][row + posX] = ".";
-            }
-        }
-    }
-
-    for (let col=0; col < block2.length; col++) {
-        for (let row=0; row < block2[0].length; row++) {
-            if (block2[col][row] !== ".") {
-                board[col + posY - 0][row + posX] = block2[col][row];
-            }
         }
     }
     return board.map(row => row.join("") + "\n").join("");
