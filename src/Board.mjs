@@ -72,9 +72,14 @@ export class Board {
     if (dx > 0 && this.isRightFull()) return;
     if (dy > 0 && this.isBellowFull()) {
       this.isFalling = false;
+      
       if (this.isLineFull()) {
         for (let i=0; i < this.grid.length; i++) {
-          if (this.isLineFull()) { this.clearFullLines(); } else { break }
+          if (this.isLineFull()) { 
+            this.clearFullLines(); 
+          } else { 
+            break 
+          }
         }  
       }
       return;
@@ -105,6 +110,16 @@ export class Board {
       this.tryMove(tetromino.moveDown());
     };
     this.updateBlock(tetromino);
+  }
+
+  checkFullLines() {
+    if (this.isLineFull()) {
+      for(let i=0; i < this.grid.length; i++) {
+        if (this.isLineFull()) {
+          this.clearFullLines();
+        } else { break }
+      }
+    }
   }
 
   isLeftFull() {
