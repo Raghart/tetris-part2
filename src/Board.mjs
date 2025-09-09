@@ -72,7 +72,11 @@ export class Board {
     if (dx > 0 && this.isRightFull()) return;
     if (dy > 0 && this.isBellowFull()) {
       this.isFalling = false;
-      if (this.isLineFull()) { console.log(true); }
+      if (this.isLineFull()) {
+        for (let i=0; i < this.grid.length; i++) {
+          if (this.isLineFull()) { this.clearFullLines(); } else { break }
+        }  
+      }
       return;
     }
     this.updateBlock(this.block, move);
@@ -136,6 +140,11 @@ export class Board {
     }
     return false;
   }
+
+  clearFullLines() {
+    const fullRowIdx = this.grid.findIndex(row => row.every(cell => cell !== "."));
+    this.grid[fullRowIdx].fill(".");
+  };
 
   isBlockBellow() {
     const blockList = ["O","T","X"];

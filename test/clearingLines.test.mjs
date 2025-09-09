@@ -17,7 +17,7 @@ describe("clearing a line in the board", () => {
         thridTetromino = Tetromino.I_SHAPE;
     });
 
-    test.skip("Completing a line in the board clears it", () => {
+    test("Completing a line in the board clears it", () => {
         board.drop(secondTetromino);
         repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
@@ -37,7 +37,7 @@ describe("clearing a line in the board", () => {
         );
     });
 
-    test.skip("Completing two lines in the board clears it", () => {
+    test("Completing two lines in the board clears it", () => {
         board.drop(secondTetromino);
         repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
@@ -60,7 +60,7 @@ describe("clearing a line in the board", () => {
         );
     });
 
-    test.skip("Incomplete lines remains in the board", () => {
+    test("Incomplete lines remains in the board", () => {
         board.drop(secondTetromino);
         repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
         repeatMove(() => board.tryMove(secondTetromino.moveDown()));
