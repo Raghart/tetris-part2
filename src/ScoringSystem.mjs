@@ -1,20 +1,25 @@
 export class ScoringSystem {
-    constructor() {
+    constructor(level = 0) {
         this.score = 0;
+        this.level = level;
     }
 
     calculateScore(event) {
         if (event.type === "updateScoring") {
+            const levelMultiplier = this.level + 1;
             switch(event.linesCleared) {
                 case 1:
-                    this.score += event.linesCleared * 40;
+                    this.score += 40 * levelMultiplier;
+                    break;
                 case 2:
-                    this.score += event.linesCleared * 100;
+                    this.score += 100 * levelMultiplier;break;
                 case 3:
-                    this.score += event.linesCleared * 300;
+                    this.score += 300 * levelMultiplier;break;
                 case 4: 
-                    this.score += event.linesCleared * 1200;
+                    this.score += 1200 * levelMultiplier; break;
             };
         };
     };
+
+    getScore() { return this.score; }
 };

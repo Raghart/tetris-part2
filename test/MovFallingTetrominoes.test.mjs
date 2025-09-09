@@ -101,23 +101,19 @@ describe("Tetrominoes can't go beyond the board", () => {
 
 describe("Tetrominoes can't go through other blocks in any direction", () => {
     let board;
-    let firstTetromino;
-    let secondTetromino;
-    let thirdTetromino;
+    let O_tetromino;
 
     beforeEach(() => {
         board = new Board(10, 4);
-        firstTetromino = Tetromino.O_SHAPE;
-        secondTetromino = Tetromino.O_SHAPE;
-        thirdTetromino = Tetromino.O_SHAPE;
-        board.drop(firstTetromino);
+        O_tetromino = Tetromino.O_SHAPE;
+        board.drop(O_tetromino);
     });
 
     test("It can't be moved down through other blocks (will stop falling)", () => {
-        repeatMove(() => board.tryMove(firstTetromino.moveDown()));
+        repeatMove(() => board.tryMove(O_tetromino.moveDown()));
         
-        board.drop(secondTetromino)
-        repeatMove(() => board.tryMove(secondTetromino.moveDown()));
+        board.drop(O_tetromino)
+        repeatMove(() => board.tryMove(O_tetromino.moveDown()));
         
         expect(board.toString()).to.equalShape(
         `....OO....
@@ -128,15 +124,15 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test("It can't be moved left through other blocks", () => {
-        repeatMove(() => board.tryMove(firstTetromino.moveLeft()));
-        repeatMove(() => board.tryMove(firstTetromino.moveDown()));
+        repeatMove(() => board.tryMove(O_tetromino.moveLeft()));
+        repeatMove(() => board.tryMove(O_tetromino.moveDown()));
         
-        board.drop(secondTetromino);
-        repeatMove(() => board.tryMove(secondTetromino.moveLeft()));
-        repeatMove(() => board.tryMove(secondTetromino.moveDown()));
+        board.drop(O_tetromino);
+        repeatMove(() => board.tryMove(O_tetromino.moveLeft()));
+        repeatMove(() => board.tryMove(O_tetromino.moveDown()));
         
-        board.drop(thirdTetromino)
-        repeatMove(() => board.tryMove(thirdTetromino.moveLeft()));
+        board.drop(O_tetromino)
+        repeatMove(() => board.tryMove(O_tetromino.moveLeft()));
         
         expect(board.toString()).to.equalShape(
         `OOOO......
@@ -147,15 +143,15 @@ describe("Tetrominoes can't go through other blocks in any direction", () => {
     });
 
     test("It can't be moved right through other blocks", () => {
-        repeatMove(() => board.tryMove(firstTetromino.moveRight()));
-        repeatMove(() => board.tryMove(firstTetromino.moveDown()));
+        repeatMove(() => board.tryMove(O_tetromino.moveRight()));
+        repeatMove(() => board.tryMove(O_tetromino.moveDown()));
         
-        board.drop(secondTetromino);
-        repeatMove(() => board.tryMove(secondTetromino.moveRight()));
-        repeatMove(() => board.tryMove(secondTetromino.moveDown()));
+        board.drop(O_tetromino);
+        repeatMove(() => board.tryMove(O_tetromino.moveRight()));
+        repeatMove(() => board.tryMove(O_tetromino.moveDown()));
 
-        board.drop(thirdTetromino);
-        repeatMove(() => board.tryMove(thirdTetromino.moveRight()));
+        board.drop(O_tetromino);
+        repeatMove(() => board.tryMove(O_tetromino.moveRight()));
         
         expect(board.toString()).to.equalShape(
         `......OOOO
