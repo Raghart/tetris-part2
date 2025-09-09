@@ -23,7 +23,6 @@ describe("clearing a line in the board", () => {
         board.drop(O_tetromino);
         repeatMove(() => board.tryMove(O_tetromino.moveRight()));
         repeatMove(() => board.tryMove(O_tetromino.moveDown(), 5));
-        console.log(board.toString());
 
         expect(board.toString()).to.equalShape(
         `......

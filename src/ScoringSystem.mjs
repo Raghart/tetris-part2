@@ -12,11 +12,14 @@ export class ScoringSystem {
                     this.score += 40 * levelMultiplier;
                     break;
                 case 2:
-                    this.score += 100 * levelMultiplier;break;
+                    this.score += 100 * levelMultiplier;
+                    break;
                 case 3:
-                    this.score += 300 * levelMultiplier;break;
+                    this.score += 300 * levelMultiplier;
+                    break;
                 case 4: 
-                    this.score += 1200 * levelMultiplier; break;
+                    this.score += 1200 * levelMultiplier; 
+                    break;
             };
         };
     };
