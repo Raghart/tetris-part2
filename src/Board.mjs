@@ -1,3 +1,4 @@
+import { every } from "lodash";
 import { Tetromino } from "./Tetromino.mjs";
 
 export class Board {
@@ -71,6 +72,7 @@ export class Board {
     if (dx > 0 && this.isRightFull()) return;
     if (dy > 0 && this.isBellowFull()) {
       this.isFalling = false;
+      if (this.isLineFull()) { console.log(true); }
       return;
     }
     this.updateBlock(this.block, move);
@@ -124,6 +126,13 @@ export class Board {
       if (this.grid[this.pos.y+this.block.height]?.[this.pos.x+this.block.offsetX+row] !== ".") {
         return true;
       }
+    }
+    return false;
+  }
+
+  isLineFull() {
+    if (this.grid.some(row => row.every(cell => cell !== "."))) {
+      return true;
     }
     return false;
   }

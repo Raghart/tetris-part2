@@ -5,11 +5,23 @@ const trainingRoom = () => {
         [".",".",".",".",".",".",".",".",".",".",],
         [".",".",".",".",".",".",".",".",".",".",],
         [".",".",".",".",".",".",".",".",".",".",],
-        [".",".",".",".",".",".",".",".",".",".",],
-        [".",".",".",".",".",".",".",".",".",".",],
-        [".",".",".",".",".",".",".",".",".",".",],
+        [".",".",".",".",".",".",".","T",".",".",],
+        [".",".",".",".",".",".","T","T","O","O",],
+        ["I","I","I","I","I","I","I","T","O","O",],
     ];
 
+    for (let i=0; i < board.length ;i++) {
+        if (board.some(row => row.every(cell => cell !== "."))) {
+            const fullIdx = board.findIndex(row => row.every(cell => cell !== "."));
+            board[fullIdx].fill(".");
+        } else {
+            break;
+        }
+    }
+
+    return board.map(row => row.join("") + "\n").join("");
+
+    /*
     const getOffset = (block) => {
         for(let col = 0; col < block.length; col++) {
             let hasBlock = false;
@@ -62,6 +74,7 @@ const trainingRoom = () => {
         [".",".",".","."],
     ]
     
+    
     const testBlock = block2;
     const posX = 3;
     const posY = 0;
@@ -95,7 +108,7 @@ const trainingRoom = () => {
             board[blockHeight][offsetX + posX + i] = "X"
         }
     }
-    return board.map(row => row.join("") + "\n").join("");
+        */
 };
 
 console.log(trainingRoom());
