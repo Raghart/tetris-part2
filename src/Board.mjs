@@ -16,6 +16,7 @@ export class Board {
     this.pos = { y: 0, x: Math.floor(this.width / 2) };
     this.block = null;
     this.isFalling = false;
+    this.scoringBoard = [];
   }
 
   tick() {
@@ -103,12 +104,20 @@ export class Board {
     this.updateBlock(tetromino);
   }
 
+  addScoring(scoring) { this.scoringBoard.push(scoring); };
+
+  updateScoring(event) { this.scoringBoard.forEach(board => board.calculateScore(event)) };
+
   checkFullLines() {
     if (this.isLineFull()) {
+      let linesCleared = 0;
       for(let i=0; i < this.grid.length; i++) {
         if (this.isLineFull()) {
           this.clearFullLines();
-        } else { break }
+          ++linesCleared;
+        } else { this.updateScoring({ type: "updateScoring", linesCleared }); 
+          break;
+        }
       }
     }
   }
