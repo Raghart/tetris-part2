@@ -72,16 +72,7 @@ export class Board {
     if (dx > 0 && this.isRightFull()) return;
     if (dy > 0 && this.isBellowFull()) {
       this.isFalling = false;
-      
-      if (this.isLineFull()) {
-        for (let i=0; i < this.grid.length; i++) {
-          if (this.isLineFull()) { 
-            this.clearFullLines(); 
-          } else { 
-            break 
-          }
-        }  
-      }
+      this.checkFullLines();
       return;
     }
     this.updateBlock(this.block, move);
