@@ -16,10 +16,23 @@ describe("shuffleBag can shuffe tetrominoes to improve gameplay experience", () 
         T_tetromino = Tetromino.T_SHAPE;
         O_tetromino = Tetromino.O_SHAPE;
         I_tetromino = Tetromino.I_SHAPE;
-        shuffleBag = shuffleTetrominoes([T_tetromino, O_tetromino, I_tetromino]);
+        shuffleBag = new shuffleTetrominoes([T_tetromino, O_tetromino, I_tetromino]);
     });
 
-    test.skip("the shuffle bag returns a tetromino", () => {
+    test("the shuffle bag length decreases witch each next method", () => {
+        const _ = shuffleBag.next();
+        expect(shuffleBag.length).to.equal(2);
+    });
+
+    test("the shuffle bag refills itself if the it's length reaches 0", () => {
+        const dummyOne = shuffleBag.next();
+        const dummyTwo = shuffleBag.next();
+        const dummyThree = shuffleBag.next();
+        const dummyToRefill = shuffleBag.next();
+        expect(shuffleBag.length).to.equal(2);
+    });
+
+    test("the shuffle bag returns a tetromino", () => {
         board.drop(shuffleBag.next());
 
         expect(board.toString()).to.not.equalShape(
@@ -32,7 +45,7 @@ describe("shuffleBag can shuffe tetrominoes to improve gameplay experience", () 
         )
     });
 
-    test.skip("the shuffle bag decreases length with each tetromino drawn", () => {
+    test("the shuffle bag decreases length with each tetromino drawn", () => {
         let randomTetromino = shuffleBag.next();
         expect(randomTetromino).to.exist;
 
@@ -42,16 +55,9 @@ describe("shuffleBag can shuffe tetrominoes to improve gameplay experience", () 
         expect(shuffleBag.length).to.equal(1);
     });
 
-    test.skip("the shuffle bag length decreases witch each next method", () => {
-        const _ = shuffleBag.next();
-        expect(shuffleBag.length).to.equal(2);
-    });
-
-    test.skip("the shuffle bag refills itself if the it's length reaches 0", () => {
-        const dummyOne = shuffleBag.next();
-        const dummyTwo = shuffleBag.next();
-        const dummyThree = shuffleBag.next();
-        const dummyToRefill = shuffleBag.next();
-        expect(shuffleBag.length).to.equal(2);
+    test("the shuffle bag returns refills when length reaches zero", () => {
+        const seenTetromino = new Set();
+        for(let i=0; i < 3; i++) { seenTetromino.add(shuffleBag.next()); };
+        expect(seenTetromino.size).to.equals(3);
     });
 });
